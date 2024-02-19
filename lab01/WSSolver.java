@@ -2,8 +2,8 @@ package lab01;
 
 public class WSSolver {
     
-    WSState state;
-    WPuzzle puzzle;
+    private WSState state;
+    private WPuzzle puzzle;
 
     public WSSolver(WPuzzle puzzle) {
         this.puzzle = puzzle;

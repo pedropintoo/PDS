@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 public class WPuzzle {
+    
+    // [][]
     ArrayList<ArrayList<Character>> puzzleArray;
     ArrayList<String> targets;
 

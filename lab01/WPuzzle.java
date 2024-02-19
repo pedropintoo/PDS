@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class WPuzzle {
     
     // [][]
-    ArrayList<ArrayList<Character>> puzzleArray;
+    char[][] puzzleArray;
     ArrayList<String> targets;
 
-    private WPuzzle(ArrayList<ArrayList<Character>> puzzleArray, ArrayList<String> targets){
+    private WPuzzle(char[][] puzzleArray, ArrayList<String> targets){
         this.puzzleArray = puzzleArray;
         this.targets = targets;
     }
@@ -22,7 +22,7 @@ public class WPuzzle {
         String line = input.nextLine();
         int cols = line.length();
         int rows = 0;
-        ArrayList<ArrayList<Character>> puzzleArray = new ArrayList<>();
+        ArrayList<ArrayList<char>> puzzleArray = new ArrayList<>();
         String regex = "[A-Z]{" + cols + "}";
         if (!line.matches(regex)){
             input.close();

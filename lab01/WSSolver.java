@@ -19,7 +19,9 @@ public class WSSolver {
                 ArrayList<String> resTargets = getRestrictTargets(puzzle.getPuzzleArray()[i][j]);
                 for (String target : resTargets) {
                     Point start = new Point(0,0,puzzle.getCols());
-                    solveRec(start,WSDirection.RIGHT,target);
+                    if (solveRec(start,WSDirection.RIGHT,target)) {
+                        System.out.println(target);
+                    }
                 }
             }
         }
@@ -41,8 +43,8 @@ public class WSSolver {
             int x = next.getX(); 
             int y = next.getY();
             char next_letter = puzzle.getPuzzleArray()[x][y];
-
-            if (target.charAt(0) == next_letter) {
+            //System.out.println("[--] - " + next_letter);
+            if (target.charAt(0) == Character.toLowerCase(next_letter)) {
                 // Is the correct letter!
                 return solveRec( next, direction, target.substring(1));
             }
@@ -58,7 +60,7 @@ public class WSSolver {
         // If the first character of the target string is equal
         // to argument character we add in the ArrayList of Restrict Targets
         for (String str : puzzle.getTargets()) {
-            if(str.charAt(0) == c) restrict_targets.add(str);
+            if(str.charAt(0) == Character.toLowerCase(c)) restrict_targets.add(str);
         }
         return restrict_targets;
     }

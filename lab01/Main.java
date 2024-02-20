@@ -4,25 +4,32 @@ public class Main{
 
     public static void main(String args[]) throws Exception{
         
-        WPuzzle puzzle = WPuzzleLoad.LoadFromFile("./lab01/test.txt");
+        // WPuzzle puzzle = WPuzzleLoad.LoadFromFile("./lab01/test.txt");
         
-        // Tests
-        if (puzzle == null){
-            System.out.println("Invalid puzzle");
-            return;
+        // // Tests
+        // if (puzzle == null){
+        //     System.out.println("Invalid puzzle");
+        //     return;
+        // }
+        // System.out.println("Puzzle loaded successfully");
+        // System.out.println("Puzzle:");
+        // for (int i = 0; i < puzzle.getRows(); i++){
+        //     for (int j = 0; j < puzzle.getCols(); j++){
+        //         System.out.print(puzzle.getPuzzleArray()[i][j]);
+        //     }
+        //     System.out.println();
+        // }
+        // System.out.println("Targets:");
+        // for (String target : puzzle.getTargets()){
+        //     System.out.println(target);
+        // }
+        Point point = new Point(22, 22, 23);
+        //System.out.println(point);
+        
+        for (Point near : point.touchingPoints()) {
+            System.out.println(near);
         }
-        System.out.println("Puzzle loaded successfully");
-        System.out.println("Puzzle:");
-        for (int i = 0; i < puzzle.getRows(); i++){
-            for (int j = 0; j < puzzle.getCols(); j++){
-                System.out.print(puzzle.getPuzzleArray()[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println("Targets:");
-        for (String target : puzzle.getTargets()){
-            System.out.println(target);
-        }
+
         //////////////////////////////////////////////
         //WSSolver wSolver = new WSSolver(puzzle);
         //wSolver.solve();

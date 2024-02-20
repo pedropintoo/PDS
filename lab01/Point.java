@@ -3,7 +3,7 @@ package lab01;
 import java.util.ArrayList;
 
 public class Point {
-    
+
     // Only Positive coordinates
     private final int x;
     private final int y;
@@ -13,6 +13,11 @@ public class Point {
         this.x = x;
         this.y = y;
         this.limit = limit;
+    }
+
+    @Override
+    public String toString() {
+        return "Point [x=" + x + ", y=" + y + ", limit=" + limit + "]";
     }
 
     // Function that returns the nearby points
@@ -25,7 +30,7 @@ public class Point {
             if (point != null) nearbyPoints.add(point);  
         }
 
-        return null;
+        return nearbyPoints;
     }
 
     // Function that returns the near point in a specific direction
@@ -45,32 +50,32 @@ public class Point {
         switch (direction) {
             case UP: 
                 if (y <= 0) break;                            // UP-CONDITION
-                point =  new Point(x,(y-1)%limit,limit);         
+                point =  new Point(x,(y-1)%limit,limit); break;         
             case RIGHT_UP: 
                 if (y <= 0) break;                            // UP-CONDITION
                 if (x >= limit-1) break;                      // RIGHT-CONDITION
-                point = new Point((x+1)%limit,(y-1)%limit,limit);
+                point = new Point((x+1)%limit,(y-1)%limit,limit); break;
             case RIGHT:
                 if (x >= limit-1) break;                      // RIGHT-CONDITION
-                point = new Point((x+1)%limit,y,limit);
+                point = new Point((x+1)%limit,y,limit); break;
             case RIGHT_DOWN:
                 if (x >= limit-1) break;                      // RIGHT-CONDITION
                 if (y >= limit-1) break;                      // DOWN-CONDITION 
-                point = new Point((x+1)%limit,(y+1)%limit,limit);                
+                point = new Point((x+1)%limit,(y+1)%limit,limit); break;               
             case DOWN:
                 if (y >= limit-1) break;                      // DOWN-CONDITION 
-                point = new Point(x,(y+1)%limit,limit);  
+                point = new Point(x,(y+1)%limit,limit); break;  
             case LEFT_DOWN:
                 if (x <= 0) break;                            // LEFT-CONDITION
                 if (y >= limit-1) break;                      // DOWN-CONDITION     
-                point = new Point((x+1)%limit,(y+1)%limit,limit);
+                point = new Point((x+1)%limit,(y+1)%limit,limit); break;
             case LEFT:
                 if (x <= 0) break;                            // LEFT-CONDITION
-                point = new Point((x-1)%limit,y,limit);
+                point = new Point((x-1)%limit,y,limit); break;
             case LEFT_UP:
                 if (x <= 0) break;                            // LEFT-CONDITION
                 if (y <= 0) break;                            // UP-CONDITION
-                point = new Point((x-1)%limit,(y-1)%limit,limit); 
+                point = new Point((x-1)%limit,(y-1)%limit,limit); break; 
         }
 
         return point;

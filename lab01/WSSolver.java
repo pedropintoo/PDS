@@ -12,6 +12,7 @@ public class WSSolver {
 
     public void solve() {
         // Solve the maze
+        
     }
 
     public WSState getState() {

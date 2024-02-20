@@ -23,12 +23,12 @@ public class Main{
         // for (String target : puzzle.getTargets()){
         //     System.out.println(target);
         // }
-        Point point = new Point(22, 22, 23);
-        //System.out.println(point);
+        // Point point = new Point(22, 22, 23);
+        // //System.out.println(point);
         
-        for (Point near : point.touchingPoints()) {
-            System.out.println(near);
-        }
+        // for (Point near : point.touchingPoints()) {
+        //     System.out.println(near);
+        // }
 
         //////////////////////////////////////////////
         //WSSolver wSolver = new WSSolver(puzzle);

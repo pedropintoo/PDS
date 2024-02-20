@@ -81,4 +81,14 @@ public class Point {
         return point;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+
+    
 }

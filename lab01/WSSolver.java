@@ -6,57 +6,61 @@ public class WSSolver {
     
     private WSState state;
     private WPuzzle puzzle;
-    private ArrayList<String> targets;
 
     public WSSolver(WPuzzle puzzle) {
         this.puzzle = puzzle;
         this.state = WSState.READY;
-        this.targets = puzzle.getTargets();
     }
 
     // Word Search Solver
     public void solve() {
         for (int i = 0; i < puzzle.getRows(); i++){
             for (int j = 0; j < puzzle.getCols(); j++){
-                System.out.print(puzzle.getPuzzleArray()[i][j]);
+                ArrayList<String> resTargets = getRestrictTargets(puzzle.getPuzzleArray()[i][j]);
+                for (String target : resTargets) {
+                    Point start = new Point(0,0,puzzle.getCols());
+                    solveRec(start,WSDirection.RIGHT,target);
+                }
             }
-
-            System.out.println();
-        }
-        
-        Point start = new Point(0, 0, puzzle.getRows());
-        solveRec(start, null, word);
-        // Solve the maze
-        for (int i = 0; i < puzzle.getRows(); i++){
-            for (int j = 0; j < puzzle.getCols(); j++){
-                System.out.print(puzzle.getPuzzleArray()[i][j]);
-            }
-
-            System.out.println();
         }
     }
-    
+
+    // Recursive algorithm to solve
+    private boolean solveRec(Point current, WSDirection direction, String target) {
+        // stop condition
+        if (target.isEmpty()) return true;
+
+        // current = start -> Direction is not defined yet!
+        if (direction == null) {
+            return false;
+        } else {
+            Point next = current.touchingPointInDirection(direction);
+            if (next == null) return false; // BORDER-CONDITION
+            
+            // Testing the letter
+            int x = next.getX(); 
+            int y = next.getY();
+            char next_letter = puzzle.getPuzzleArray()[x][y];
+
+            if (target.charAt(0) == next_letter) {
+                // Is the correct letter!
+                return solveRec( next, direction, target.substring(1));
+            }
+        }
+
+        return true;
+
+    }
+
     private ArrayList<String> getRestrictTargets(char c){
         ArrayList<String> restrict_targets = new ArrayList<>();
 
         // If the first character of the target string is equal
         // to argument character we add in the ArrayList of Restrict Targets
-        for (String str : targets) {
+        for (String str : puzzle.getTargets()) {
             if(str.charAt(0) == c) restrict_targets.add(str);
         }
         return restrict_targets;
-    }
-
-    // Recursive algorithm to solve
-    private void solveRec() {
-        
-        for (int i = 0; i < puzzle.getRows(); i++){
-            for (int j = 0; j < puzzle.getCols(); j++){
-                System.out.print(puzzle.getPuzzleArray()[i][j]);
-            }
-
-            System.out.println();
-        }
     }
 
     public WSState getState() {

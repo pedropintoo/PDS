@@ -25,6 +25,7 @@ public class Main{
 
         WSSolver wSolver = new WSSolver(puzzle);
         wSolver.solve();
+        WSValidator.validate(wSolver);
         WSOutput.output(wSolver);
 
     }

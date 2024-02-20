@@ -15,6 +15,8 @@ public class WPuzzle {
         this.cols = cols;
     }
 
+    // Getters
+
     public char[][] getPuzzleArray(){
         return puzzleArray;
     }

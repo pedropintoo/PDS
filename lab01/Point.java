@@ -1,7 +1,6 @@
 package lab01;
 
-import java.util.ArrayList;
-
+// Class to Support Puzzle
 public class Point {
 
     // Only Positive coordinates
@@ -15,27 +14,10 @@ public class Point {
         this.limit = limit;
     }
 
+    // Only for Debugging
     @Override
     public String toString() {
         return "Point [x=" + x + ", y=" + y + ", limit=" + limit + "]";
-    }
-
-    // Function that returns the nearby points
-    public ArrayList<Point> touchingPoints(){
-        
-        ArrayList<Point> nearbyPoints = new ArrayList<>();
-
-        for (WSDirection direction : WSDirection.values()) {
-            Point point = getPointInDirection(direction);
-            if (point != null) nearbyPoints.add(point);  
-        }
-
-        return nearbyPoints;
-    }
-
-    // Function that returns the near point in a specific direction
-    public Point touchingPointInDirection(WSDirection direction){
-        return getPointInDirection(direction);
     }
 
     // Get the points (if valid) in a direction
@@ -44,7 +26,7 @@ public class Point {
     //      RIGHT-CONDITION -> x >= limit-1
     //      DOWN-CONDITION -> y >= limit-1
     //      LEFT-CONDITION -> x <= 0
-    private Point getPointInDirection(WSDirection direction) {
+    public Point getPointInDirection(WSDirection direction) {
         Point point = null;
         
         switch (direction) {
@@ -68,7 +50,7 @@ public class Point {
             case LEFT_DOWN:
                 if (x <= 0) break;                            // LEFT-CONDITION
                 if (y >= limit-1) break;                      // DOWN-CONDITION     
-                point = new Point((x+1)%limit,(y+1)%limit,limit); break;
+                point = new Point((x-1)%limit,(y+1)%limit,limit); break;
             case LEFT:
                 if (x <= 0) break;                            // LEFT-CONDITION
                 point = new Point((x-1)%limit,y,limit); break;
@@ -80,6 +62,8 @@ public class Point {
 
         return point;
     }
+
+    // Getters
 
     public int getX() {
         return x;

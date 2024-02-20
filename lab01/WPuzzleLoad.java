@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+// class WPuzzleLoad is a class that reads a file and returns a WPuzzle object
 public class WPuzzleLoad {
     
     public static WPuzzle LoadFromFile(String filename) throws FileNotFoundException{

@@ -1,6 +1,9 @@
 package lab01;
 
+import java.util.ArrayList;
+
 public class Point {
+    
     // Only Positive coordinates
     private final int x;
     private final int y;
@@ -13,8 +16,15 @@ public class Point {
     }
 
     // Function that returns the nearby points
-    public Point[] touchingPoints(){
+    public ArrayList<Point> touchingPoints(){
         
+        ArrayList<Point> nearbyPoints = new ArrayList<>();
+
+        for (WSDirection direction : WSDirection.values()) {
+            Point point = getPointInDirection(direction);
+            if (point != null) nearbyPoints.add(point);  
+        }
+
         return null;
     }
 

@@ -15,6 +15,7 @@ public class WPuzzleLoad {
         int rows = 0;
         //ArrayList<ArrayList<char>> puzzleArray = new ArrayList<>();
         char[][] puzzleArray = new char[40][40]; // 40x40 is the maximum size
+        ArrayList<String> targets = new ArrayList<>();
         String regex = "[A-Z]{" + cols + "}";
 
         if (!line.matches(regex) || cols < 1 || cols > 40){
@@ -38,23 +39,19 @@ public class WPuzzleLoad {
                 rows++;
             } else {
                 //If rows == cols, then we are reading the targets
-                ArrayList<String> targets = new ArrayList<>();
-                String[] targetList = input.nextLine().split("[\\s,;.]+"); // Split by any whitespace, comma or semicolon
-                for (String target : targetList){
+                String[] targetLine = input.nextLine().split("[\\s,;.]+"); // Split by any whitespace, comma or semicolon
+                for (String target : targetLine){
                     // If the target is not a string of letters, return null
                     if (!target.matches("^[a-zA-Z]+$")){
                         input.close();
                         return null;
                     }
-                    
                     targets.add(target);
                 }
-                input.close();
-                return new WPuzzle(puzzleArray, targets, rows, cols);   
             }
         }
         input.close();
-        return null;
+        return new WPuzzle(puzzleArray, targets, rows, cols);
     }
 
 }

@@ -46,9 +46,7 @@ public class WSSolver {
         }
 
         // Validations 
-        // [FALTA]             
-        state = WSState.SOLVED;
-
+        if (WSValidator.validate(this)) state = WSState.SOLVED;
     }
 
     // Recursive algorithm to solve

@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// class WPuzzleLoad is a class that reads a file and returns a WPuzzle object
 public class WPuzzleLoad {
     
     public static WPuzzle LoadFromFile(String filename) throws FileNotFoundException{
@@ -13,7 +12,6 @@ public class WPuzzleLoad {
         String line = input.nextLine();
         int cols = line.length();
         int rows = 0;
-        //ArrayList<ArrayList<char>> puzzleArray = new ArrayList<>();
         char[][] puzzleArray = new char[40][40]; // 40x40 is the maximum size
         ArrayList<String> targets = new ArrayList<>();
         String regex = "[A-Z]{" + cols + "}";
@@ -22,7 +20,6 @@ public class WPuzzleLoad {
             input.close();
             return null;
         }
-        //puzzleArray.add(new ArrayList<char>());
         puzzleArray[rows] = line.toCharArray(); 
         rows++;
         
@@ -34,15 +31,15 @@ public class WPuzzleLoad {
                     input.close();
                     return null;
                 }
-                //puzzleArray.add(new ArrayList<char>());
                 puzzleArray[rows] = line.toCharArray();
                 rows++;
             } else {
-                //If rows == cols, then we are reading the targets
-                String[] targetLine = input.nextLine().split("[\\s,;.]+"); // Split by any whitespace, comma or semicolon
+                // If rows == cols, then we are reading the targets
+                // If exists an invalid target, then the file is invalid
+
+                String[] targetLine = input.nextLine().split("[\\s,;.]+"); 
                 for (String target : targetLine){
-                    // If the target is not a string of letters, return null
-                    if (!target.matches("^[a-zA-Z]+$")){
+                    if (!isTargetValid(target)){
                         input.close();
                         return null;
                     }
@@ -54,4 +51,7 @@ public class WPuzzleLoad {
         return new WPuzzle(puzzleArray, targets, rows, cols);
     }
 
+    public static boolean isTargetValid(String target){
+        return !target.equals(target.toUpperCase());
+    }
 }

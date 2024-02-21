@@ -1,5 +1,6 @@
 package lab01;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class WSOutput {
@@ -20,17 +21,15 @@ public class WSOutput {
 
         // Output Structure
         // [FALTA]
-        for (Map.Entry<String, Map<Point, WSDirection>> entry : wSolver.getTargets_map().entrySet()) {
+        for (Map.Entry<String, ArrayList<Vector>> entry : wSolver.getTargets_map().entrySet()) {
             String key = entry.getKey();
-            Map<Point, WSDirection> innerMap = entry.getValue();
+            ArrayList<Vector> innerMap = entry.getValue();
 
             System.out.println("Target: " + key);
 
-            for (Map.Entry<Point, WSDirection> innerEntry : innerMap.entrySet()) {
-                Point innerKey = innerEntry.getKey();
-                WSDirection value = innerEntry.getValue();
+            for (Vector vector : innerMap) {
 
-                System.out.println("    " + innerKey + " -> " + value);
+                System.out.println("    " + vector);
             }
 
             System.out.println();

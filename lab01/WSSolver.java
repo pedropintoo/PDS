@@ -9,7 +9,7 @@ public class WSSolver {
     private WSState state;
     private WPuzzle puzzle;
 
-    private final Map<String,Map<Point,WSDirection>> targets_map;
+    private final Map<String,ArrayList<Vector>> targets_map;
 
     public WSSolver(WPuzzle puzzle) {
         this.puzzle = puzzle;
@@ -18,7 +18,7 @@ public class WSSolver {
         // Initialize the structure that holds the results
         this.targets_map = new HashMap<>();
         for (String target : puzzle.getTargets()) {
-            targets_map.put(target, new HashMap<>());
+            targets_map.put(target, new ArrayList<>());
         }
     }
 
@@ -71,8 +71,8 @@ public class WSSolver {
                     // Is the correct letter!
                     // So, change the direction
                     if(solveRec(next, dir, target.substring(2))) {
-                        Map<Point,WSDirection> finds = targets_map.get(target);
-                        finds.put(current, dir);
+                        ArrayList<Vector> list_vector = targets_map.get(target);
+                        list_vector.add(new Vector(current, dir, target.length()));
                     }
                 }
             }
@@ -115,9 +115,9 @@ public class WSSolver {
         return state;
     }
 
-    public Map<String, Map<Point, WSDirection>> getTargets_map() {
+    public Map<String, ArrayList<Vector>> getTargets_map() {
         return targets_map;
-    }  
+    }
 
     
 

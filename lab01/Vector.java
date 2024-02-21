@@ -11,4 +11,11 @@ public class Vector {
         this.direction = direction;
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return "Vector [root=" + root + ", direction=" + direction + ", size=" + size + "]";
+    }
+
+    
 }

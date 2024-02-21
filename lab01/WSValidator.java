@@ -1,14 +1,15 @@
 package lab01;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class WSValidator {
     public static boolean validate(WSSolver wSolver) {
 
         // Validate if every target was found and only one time
-        for (Map.Entry<String, Map<Point, WSDirection>> targetsMap : wSolver.getTargets_map().entrySet()) {
-            Map<Point, WSDirection> innerMap = targetsMap.getValue();
-            int occurrences = innerMap.size();
+        for (Map.Entry<String, ArrayList<Vector>> targetsMap : wSolver.getTargets_map().entrySet()) {
+            ArrayList<Vector> list_vectors = targetsMap.getValue();
+            int occurrences = list_vectors.size();
             
             if (occurrences == 0) {
                 return false;

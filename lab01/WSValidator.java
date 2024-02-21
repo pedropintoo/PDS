@@ -11,11 +11,7 @@ public class WSValidator {
             ArrayList<Vector> list_vectors = targetsMap.getValue();
             int occurrences = list_vectors.size();
             
-            if (occurrences == 0) {
-                return false;
-            } else if (occurrences > 1) {
-                return false;
-            }
+            if (occurrences == 0 || occurrences > 1) return false;
         }
         return true;
 

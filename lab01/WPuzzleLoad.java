@@ -52,6 +52,6 @@ public class WPuzzleLoad {
     }
 
     public static boolean isTargetValid(String target){
-        return !target.equals(target.toUpperCase());
+        return !target.equals(target.toUpperCase()) && target.matches("^[a-zA-Z]+$");
     }
 }

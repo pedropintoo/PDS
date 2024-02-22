@@ -17,5 +17,16 @@ public class Vector {
         return "Vector [root=" + root + ", direction=" + direction + ", size=" + size + "]";
     }
 
+    public Point getRoot() {
+        return root;
+    }
+
+    public WSDirection getDirection() {
+        return direction;
+    }
+
+    public int getSize() {
+        return size;
+    }
     
 }

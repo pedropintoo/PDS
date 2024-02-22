@@ -23,10 +23,10 @@ public class WSValidator {
         for (String target : targets_map.keySet()){
             for (String targetToCompare : targets_map.keySet()){
                 if (isTargetToCompareCandidate(target, targetToCompare)){
-                    ArrayList<Vector> targetVector = targets_map.get(target);
-                    ArrayList<Vector> targetToCompareVector = targets_map.get(targetToCompare);
+                    ArrayList<Vector> targetVectors = targets_map.get(target);
+                    ArrayList<Vector> targetToCompareVectors = targets_map.get(targetToCompare);
 
-                    removeInvalidPoints(targetVector, targetToCompareVector);                    
+                    removeInvalidPoints(targetVectors, targetToCompareVectors);                    
                 }
             }
         } 
@@ -36,8 +36,15 @@ public class WSValidator {
         return !target.equals(targetToCompare) && targetToCompare.contains(target);
     }
 
-    public static void removeInvalidPoints(ArrayList<Vector> targetVector, ArrayList<Vector> targetToCompareVector){
-        // TODO
+    public static void removeInvalidPoints(ArrayList<Vector> targetVectors, ArrayList<Vector> targetToCompareVectors){
+        for (int i = 0; i < targetVectors.size(); i++){
+            Vector targetVector = targetVectors.get(i);
+            for (int j = 0; j < targetToCompareVectors.size(); j++){
+                Vector targetToCompareVector = targetToCompareVectors.get(j);
+                 
+               
+            }
+        }
     }
     
 }

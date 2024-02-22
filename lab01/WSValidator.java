@@ -41,10 +41,41 @@ public class WSValidator {
             Vector targetVector = targetVectors.get(i);
             for (int j = 0; j < targetToCompareVectors.size(); j++){
                 Vector targetToCompareVector = targetToCompareVectors.get(j);
-                 
-               
+                if (isTargetInBetween(targetVector, targetToCompareVector)){
+                    targetVectors.remove(i);
+                    i--;
+                    break;
+                }
             }
         }
     }
-    
+
+    public static boolean isTargetInBetween(Vector targetVector, Vector targetToCompareVector){
+        if (targetVector.getDirection().equals(targetToCompareVector.getDirection())){
+            Point targetRoot = targetVector.getRoot();
+            Point targetToCompareRoot = targetToCompareVector.getRoot();
+            int targetSize = targetVector.getSize();
+            int targetToCompareSize = targetToCompareVector.getSize();
+            switch(targetVector.getDirection()){
+                case UP:
+                    return targetRoot.getY() <= targetToCompareRoot.getY() && targetRoot.getY() - targetSize >= targetToCompareRoot.getY() - targetToCompareSize;
+                case RIGHT_UP:
+                    // TODO
+                case RIGHT:
+                    return targetRoot.getX() >= targetToCompareRoot.getX() && targetRoot.getX() + targetSize <= targetToCompareRoot.getX() + targetToCompareSize;
+                case RIGHT_DOWN:
+                    // TODO
+                case DOWN:
+                    return targetRoot.getY() >= targetToCompareRoot.getY() && targetRoot.getY() + targetSize <= targetToCompareRoot.getY() + targetToCompareSize;
+                case LEFT_DOWN:
+                    // TODO
+                case LEFT:
+                    return targetRoot.getX() <= targetToCompareRoot.getX() && targetRoot.getX() - targetSize >= targetToCompareRoot.getX() - targetToCompareSize;
+                case LEFT_UP:
+                    // TODO
+            }
+            
+        }
+        return false;
+    }   
 }

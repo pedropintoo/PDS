@@ -73,6 +73,38 @@ public class Point {
         return y;
     }
 
+    public int getLimit() {
+        return limit;
+    }
 
-    
+    public static Point getEndPoint(Point startPoint, WSDirection direction, int size){
+        int endx = startPoint.getX();
+        int endy = startPoint.getY();
+
+        // The calculation is done with size-1 because of the indexing starting at 0
+        switch(direction){
+            case UP:
+                endy -= size-1;
+            case RIGHT_UP:
+                endx += size-1;
+                endy -= size-1;
+            case RIGHT:
+                endx += size-1;
+            case RIGHT_DOWN:
+                endx += size-1;
+                endy += size-1;
+            case DOWN:
+                endy += size-1;
+            case LEFT_DOWN:
+                endx -= size-1;
+                endy += size-1;
+            case LEFT:
+                endx -= size-1;
+            case LEFT_UP:
+                endx -= size-1;
+                endy -= size-1;
+        }
+
+        return new Point(endx, endy, startPoint.getLimit());
+    }
 }

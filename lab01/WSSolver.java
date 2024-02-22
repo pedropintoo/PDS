@@ -31,11 +31,11 @@ public class WSSolver {
         // Start the Solver
         /////////////////////
 
-        for (int y = 0; y < puzzle.getRows(); y++){
-            for (int x = 0; x < puzzle.getCols(); x++){
+        for (int y = 0; y < puzzle.getSize(); y++){
+            for (int x = 0; x < puzzle.getSize(); x++){
                 ArrayList<String> resTargets = getRestrictTargets(puzzle.getPuzzleArray()[y][x]);
                 for (String target : resTargets) {
-                    Point start = new Point(x,y,puzzle.getCols());
+                    Point start = new Point(x,y,puzzle.getSize());
 
                     // We pass the full target because of the mapping 
                     // but we already check the first char!

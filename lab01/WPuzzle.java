@@ -5,14 +5,12 @@ public class WPuzzle {
     
     private char[][] puzzleArray;
     private ArrayList<String> targets;
-    private int cols;
-    private int rows;
+    private int size;
 
-    public WPuzzle(char[][] puzzleArray, ArrayList<String> targets, int rows, int cols){
+    public WPuzzle(char[][] puzzleArray, ArrayList<String> targets, int size){
         this.puzzleArray = puzzleArray;
         this.targets = targets;
-        this.rows = rows;
-        this.cols = cols;
+        this.size = size;
     }
 
     // Getters
@@ -25,12 +23,9 @@ public class WPuzzle {
         return targets;
     }
 
-    public int getCols(){
-        return cols;
+    public int getSize(){
+        return size;
     }
 
-    public int getRows(){
-        return rows;
-    }
 
 }

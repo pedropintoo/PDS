@@ -48,7 +48,7 @@ public class WPuzzleLoad {
             }
         }
         input.close();
-        return new WPuzzle(puzzleArray, targets, rows, cols);
+        return new WPuzzle(puzzleArray, targets, rows);
     }
 
     public static boolean isTargetValid(String target){

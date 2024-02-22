@@ -14,8 +14,8 @@ public class Main{
         // System.out.println("Puzzle loaded successfully");
 
         // System.out.println("Puzzle:");
-        // for (int i = 0; i < puzzle.getRows(); i++){
-        //     for (int j = 0; j < puzzle.getCols(); j++){
+        // for (int i = 0; i < puzzle.getSize(); i++){
+        //     for (int j = 0; j < puzzle.getSize(); j++){
         //         System.out.print(puzzle.getPuzzleArray()[i][j]);
         //     }
         //     System.out.println();

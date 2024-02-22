@@ -1,5 +1,10 @@
 package lab01;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public enum WSDirection {
     UP {
         public String toString() {
@@ -40,5 +45,13 @@ public enum WSDirection {
         public String toString() {
             return "UpLeft";
         }
+    };
+
+    private static final List<WSDirection> DIRECTIONS = Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = DIRECTIONS.size();
+    private static final Random RANDOM = new Random();
+
+    public static WSDirection randomDirection() {
+        return DIRECTIONS.get(RANDOM.nextInt(SIZE));
     }
 }

@@ -54,29 +54,31 @@ public class WSValidator {
         if (targetVector.getDirection().equals(targetToCompareVector.getDirection())){
             Point targetRoot = targetVector.getRoot();
             Point targetToCompareRoot = targetToCompareVector.getRoot();
-            int targetSize = targetVector.getSize();
-            int targetToCompareSize = targetToCompareVector.getSize();
+            Point endTarget = Point.getEndPoint(targetRoot, targetVector.getDirection(), targetVector.getSize());
+            Point endTargetToCompare = Point.getEndPoint(targetToCompareRoot, targetToCompareVector.getDirection(), targetToCompareVector.getSize());
             switch(targetVector.getDirection()){
                 case UP:
-                    return targetRoot.getY() <= targetToCompareRoot.getY() && targetRoot.getY() - targetSize >= targetToCompareRoot.getY() - targetToCompareSize;
+                    return targetRoot.getY() <= targetToCompareRoot.getY() && endTarget.getY() >= endTargetToCompare.getY();
                 case RIGHT_UP:
-                    // TODO
+                    return targetRoot.getX() >= targetToCompareRoot.getX() && endTarget.getX() <= endTargetToCompare.getX() && 
+                    targetRoot.getY() <= targetToCompareRoot.getY() && endTarget.getY() >= endTargetToCompare.getY();
                 case RIGHT:
-                    return targetRoot.getX() >= targetToCompareRoot.getX() && targetRoot.getX() + targetSize <= targetToCompareRoot.getX() + targetToCompareSize;
+                    return targetRoot.getX() >= targetToCompareRoot.getX() && endTarget.getX() <= endTargetToCompare.getX();
                 case RIGHT_DOWN:
-                    // TODO
+                    return targetRoot.getX() >= targetToCompareRoot.getX() && endTarget.getX() <= endTargetToCompare.getX() &&
+                    targetRoot.getY() >= targetToCompareRoot.getY() && endTarget.getY() <= endTargetToCompare.getY();
                 case DOWN:
-                    return targetRoot.getY() >= targetToCompareRoot.getY() && targetRoot.getY() + targetSize <= targetToCompareRoot.getY() + targetToCompareSize;
+                    return targetRoot.getY() >= targetToCompareRoot.getY() && endTarget.getY() <= endTargetToCompare.getY();
                 case LEFT_DOWN:
-                    // TODO
+                    return targetRoot.getX() <= targetToCompareRoot.getX() && endTarget.getX() >= endTargetToCompare.getX() &&
+                    targetRoot.getY() >= targetToCompareRoot.getY() && endTarget.getY() <= endTargetToCompare.getY();
                 case LEFT:
-                    return targetRoot.getX() <= targetToCompareRoot.getX() && targetRoot.getX() - targetSize >= targetToCompareRoot.getX() - targetToCompareSize;
+                    return targetRoot.getX() <= targetToCompareRoot.getX() && endTarget.getX() >= endTargetToCompare.getX();
                 case LEFT_UP:
-                    // TODO
-            }
-            
+                    return targetRoot.getX() <= targetToCompareRoot.getX() && endTarget.getX() >= endTargetToCompare.getX() &&
+                    targetRoot.getY() <= targetToCompareRoot.getY() && endTarget.getY() >= endTargetToCompare.getY();
+            }     
         }
         return false;
     }  
-    
 }

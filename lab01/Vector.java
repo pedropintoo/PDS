@@ -14,7 +14,7 @@ public class Vector {
 
     @Override
     public String toString() {
-        return "Vector [root=" + root + ", direction=" + direction + ", size=" + size + "]";
+        return size + " " + root + " " + direction;
     }
 
     public Point getRoot() {

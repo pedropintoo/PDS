@@ -17,7 +17,7 @@ public class WSValidator {
 
     }
 
-    public static void filter(WSSolver wsSolver){
+    private static void filter(WSSolver wsSolver){
         Map<String, ArrayList<Vector>> targets_map = wsSolver.getTargets_map();
 
         for (String target : targets_map.keySet()){
@@ -32,11 +32,11 @@ public class WSValidator {
         } 
     }
 
-    public static boolean isTargetToCompareCandidate(String target, String targetToCompare){
+    private static boolean isTargetToCompareCandidate(String target, String targetToCompare){
         return !target.equals(targetToCompare) && targetToCompare.contains(target);
     }
 
-    public static void removeInvalidPoints(ArrayList<Vector> targetVectors, ArrayList<Vector> targetToCompareVectors){
+    private static void removeInvalidPoints(ArrayList<Vector> targetVectors, ArrayList<Vector> targetToCompareVectors){
         for (int i = 0; i < targetVectors.size(); i++){
             Vector targetVector = targetVectors.get(i);
             for (int j = 0; j < targetToCompareVectors.size(); j++){
@@ -50,7 +50,7 @@ public class WSValidator {
         }
     }
 
-    public static boolean isTargetInBetween(Vector targetVector, Vector targetToCompareVector){
+    private static boolean isTargetInBetween(Vector targetVector, Vector targetToCompareVector){
         if (targetVector.getDirection().equals(targetToCompareVector.getDirection())){
             Point targetRoot = targetVector.getRoot();
             Point targetToCompareRoot = targetToCompareVector.getRoot();

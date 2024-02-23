@@ -24,14 +24,12 @@ public class WSOutput {
         for (Map.Entry<String, ArrayList<Vector>> entry : wSolver.getTargets_map().entrySet()) {
             String key = entry.getKey();
             ArrayList<Vector> innerMap = entry.getValue();
+            Vector vector = innerMap.get(0); // if the puzzle is valid, the target will be found only once
+            Point root = vector.getRoot();
+            WSDirection direction = vector.getDirection();
+            int size = vector.getSize();
 
-            System.out.println("Target: " + key);
-
-            for (Vector vector : innerMap) {
-
-                System.out.println("    " + vector);
-            }
-
+            System.out.printf("%-16s%-7d%-10s%-15s", key, size, root, direction);
             System.out.println();
         }
     

@@ -17,7 +17,7 @@ public class Point {
     // Only for Debugging
     @Override
     public String toString() {
-        return "Point [x=" + x + ", y=" + y + ", limit=" + limit + "]";
+        return x + "," + y + " ";
     }
 
     // Get the points (if valid) in a direction

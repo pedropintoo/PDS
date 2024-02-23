@@ -31,6 +31,6 @@ public class WSOutput {
             System.out.printf("%-16s%-7d%-10s%-15s", key, size, root, direction);
             System.out.println();
         }
-    
+                
     }
 }

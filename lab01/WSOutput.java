@@ -21,16 +21,51 @@ public class WSOutput {
 
         // Output Structure
         Map<String, ArrayList<Vector>> targets_map = wSolver.getTargets_map();
-        for (String key : targets_map.keySet()) {
-            ArrayList<Vector> innerMap = targets_map.get(key);
+        for (String target : targets_map.keySet()) {
+            ArrayList<Vector> innerMap = targets_map.get(target);
             Vector vector = innerMap.get(0); // if the puzzle is valid, the target will be found only once
             Point root = vector.getRoot();
             WSDirection direction = vector.getDirection();
             int size = vector.getSize();
 
-            System.out.printf("%-16s%-7d%-10s%-15s", key, size, root, direction);
+            System.out.printf("%-16s%-7d%-10s%-15s", target, size, root, direction);
             System.out.println();
         }
-                
+        printSolvedPuzzle(wSolver);
+    }
+
+    private static void printSolvedPuzzle(WSSolver wSolver) {
+        // initialize a blank puzzle array (with '.')
+        char[][] puzzleArray = wSolver.getPuzzle().getPuzzleArray();
+        int size = wSolver.getPuzzle().getSize();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                puzzleArray[i][j] = '.';
+            }
+        }
+
+        // fill the puzzle array with the found targets
+        Map<String, ArrayList<Vector>> targets_map = wSolver.getTargets_map();
+        for (String target : targets_map.keySet()){
+            for (int i = 0; i < targets_map.get(target).size(); i++){
+                Vector vector = targets_map.get(target).get(i);
+                Point root = vector.getRoot();
+                WSDirection direction = vector.getDirection();
+                int sizeVector = vector.getSize();
+                for (int j = 0; j < sizeVector; j++){
+                    puzzleArray[root.getY()][root.getX()] = Character.toUpperCase(target.charAt(j));
+                    root = root.getPointInDirection(direction);
+                }
+            }
+        }
+
+        // print the puzzle
+        System.out.println();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(puzzleArray[i][j]);
+            }
+            System.out.println();
+        }
     }
 }

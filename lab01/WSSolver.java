@@ -2,6 +2,7 @@ package lab01;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WSSolver {
@@ -16,7 +17,7 @@ public class WSSolver {
         this.state = WSState.READY;
 
         // Initialize the structure that holds the results
-        this.targets_map = new HashMap<>();
+        this.targets_map = new LinkedHashMap<>();
         for (String target : puzzle.getTargets()) {
             targets_map.put(target, new ArrayList<>());
         }

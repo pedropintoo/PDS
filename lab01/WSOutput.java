@@ -20,10 +20,9 @@ public class WSOutput {
         }
 
         // Output Structure
-        // [FALTA]
-        for (Map.Entry<String, ArrayList<Vector>> entry : wSolver.getTargets_map().entrySet()) {
-            String key = entry.getKey();
-            ArrayList<Vector> innerMap = entry.getValue();
+        Map<String, ArrayList<Vector>> targets_map = wSolver.getTargets_map();
+        for (String key : targets_map.keySet()) {
+            ArrayList<Vector> innerMap = targets_map.get(key);
             Vector vector = innerMap.get(0); // if the puzzle is valid, the target will be found only once
             Point root = vector.getRoot();
             WSDirection direction = vector.getDirection();

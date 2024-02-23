@@ -27,5 +27,4 @@ public class WPuzzle {
         return size;
     }
 
-
 }

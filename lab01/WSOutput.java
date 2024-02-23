@@ -35,14 +35,7 @@ public class WSOutput {
     }
 
     private static void printSolvedPuzzle(WSSolver wSolver) {
-        // initialize a blank puzzle array (with '.')
-        char[][] puzzleArray = wSolver.getPuzzle().getPuzzleArray();
-        int size = wSolver.getPuzzle().getSize();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                puzzleArray[i][j] = '.';
-            }
-        }
+        char[][] puzzleArray = initializePuzzleArray(wSolver);
 
         // fill the puzzle array with the found targets
         Map<String, ArrayList<Vector>> targets_map = wSolver.getTargets_map();
@@ -58,14 +51,17 @@ public class WSOutput {
                 }
             }
         }
+    }
 
-        // print the puzzle
-        System.out.println();
+    private static char[][] initializePuzzleArray(WSSolver wSolver) {
+        // initialize a blank puzzle array (with '.')
+        char[][] puzzleArray = wSolver.getPuzzle().getPuzzleArray();
+        int size = wSolver.getPuzzle().getSize();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                System.out.print(puzzleArray[i][j]);
+                puzzleArray[i][j] = '.';
             }
-            System.out.println();
         }
+        return puzzleArray;
     }
 }

@@ -27,4 +27,13 @@ public class WPuzzle {
         return size;
     }
 
+    public static void printPuzzle(char[][] puzzleArray ,int size){
+        System.out.println();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(puzzleArray[i][j]);
+            }
+            System.out.println();
+        }
+    }
 }

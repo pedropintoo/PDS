@@ -51,6 +51,7 @@ public class WSOutput {
                 }
             }
         }
+        WPuzzle.printPuzzle(puzzleArray, wSolver.getPuzzle().getSize());
     }
 
     private static char[][] initializePuzzleArray(WSSolver wSolver) {

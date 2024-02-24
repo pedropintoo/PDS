@@ -90,7 +90,7 @@ public class WSSolver {
             if (Character.toLowerCase(target.charAt(0)) == Character.toLowerCase(next_letter)) {
                 // Is the correct letter!
                 // 
-                return solveRec( next, direction, target.substring(1));
+                return solveRec(next, direction, target.substring(1));
             }
         }
 

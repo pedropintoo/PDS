@@ -10,10 +10,11 @@ public class WSGenerator {
 
     private static int size = 0;
     private static ArrayList<String> targets = null;
+    private static String fileOfTargets = null;
     private static PrintStream ps = System.out;
 
     public static void main(String[] args) throws FileNotFoundException {
-        
+
         readArgs(args);
 
         validateArgs();
@@ -23,20 +24,27 @@ public class WSGenerator {
         if (puzzle == null) {
             error();
         }
-
         // Output in printStream
         printOutput(puzzle);
 
     }
 
-    private static void printOutput(WPuzzle puzzle) {
-        ps.println("Puzzle:");
+    private static void printOutput(WPuzzle puzzle) throws FileNotFoundException {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 ps.print(puzzle.getPuzzleArray()[i][j]);
             }
             ps.println();
         }
+        printTargets();
+    }
+
+    private static void printTargets() throws FileNotFoundException {
+        Scanner sc = new Scanner(new FileReader(fileOfTargets));
+        while (sc.hasNextLine()) {
+            ps.println(sc.nextLine());
+        }
+        sc.close();
     }
 
     private static void validateArgs() {
@@ -55,7 +63,7 @@ public class WSGenerator {
             switch (current_arg) {
                 case "-i":
                     // file for targets
-                    String fileOfTargets = args[++i];
+                    fileOfTargets = args[++i];
                     targets = readTargets(fileOfTargets);
                     break;
                 case "-s":

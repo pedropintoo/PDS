@@ -36,7 +36,7 @@ public class WRandomPuzzle {
 
         while (true) {   
             if (n_try++ > TRIES_BEFORE_RESIGN) return null; // Failure
-            
+
             // generate a random puzzle
             puzzleArray = generateRandomPuzzleArray(size);
 
@@ -78,9 +78,10 @@ public class WRandomPuzzle {
 
     private static boolean isValidPuzzle(char[][] puzzleArray, ArrayList<String> targets, int size) {
         // Check Valid by solving!
-        
+
         WSSolver solver = new WSSolver(new WPuzzle(puzzleArray, targets, size));
         solver.solve();
+
         return solver.getState() == WSState.SOLVED;
     }
 

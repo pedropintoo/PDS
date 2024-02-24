@@ -34,7 +34,8 @@ public class WSValidator {
                 // Its only removed the second one because we assume that the target was found only once
                 // And, if it was found more than once, that case will be checked after in the validate method
                 ArrayList<Vector> targetVectors = targets_map.get(target);
-                targetVectors.remove(1); 
+                // invalid puzzle can have 0 founds 
+                if (targetVectors.size() != 0) targetVectors.remove(1); 
             }
         } 
     }

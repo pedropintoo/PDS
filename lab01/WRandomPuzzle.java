@@ -65,10 +65,10 @@ public class WRandomPuzzle {
                     puzzleArray[y][x] = Character.toUpperCase(target.charAt(n));
                 }
 
-                if (current == null) break; // TRIPLE-BREAK
+                if (current == null) break; // TRIPLE-BREAK...
             }  
 
-            if (current == null) continue; // TRIPLE-BREAK
+            if (current == null) continue; // TRIPLE-BREAK...
 
             if(isValidPuzzle(puzzleArray, targets, size)) break; // Success
         }

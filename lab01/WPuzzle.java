@@ -36,13 +36,4 @@ public class WPuzzle {
             System.out.println();
         }
     }
-
-    public static void printPuzzleWithoutSpace(char[][] puzzleArray ,int size){
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                System.out.print(puzzleArray[i][j]);
-            }
-            System.out.println();
-        }
-    }
 }

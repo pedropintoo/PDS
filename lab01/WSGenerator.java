@@ -1,53 +1,78 @@
 package lab01;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class WSGenerator {
 
     private static int size = 0;
     private static ArrayList<String> targets = null;
-    
-    public static void main(String[] args) {
+    private static PrintStream ps = System.out;
+
+    public static void main(String[] args) throws FileNotFoundException {
         
         readArgs(args);
+
         validateArgs();
         
         WPuzzle puzzle = WRandomPuzzle.generateRandomPuzzle(targets, size);
 
         if (puzzle == null) {
-            System.err.println("Puzzle can't be generated!");
-            System.exit(1);
+            error();
         }
-        char[][] puzzleArray = puzzle.getPuzzleArray();
-        System.out.println("Puzzle:");
-        WPuzzle.printPuzzleWithoutSpace(puzzleArray,size);
 
+        // Output in printStream
+        printOutput(puzzle);
+
+    }
+
+    private static void printOutput(WPuzzle puzzle) {
+        ps.println("Puzzle:");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                ps.print(puzzle.getPuzzleArray()[i][j]);
+            }
+            ps.println();
+        }
     }
 
     private static void validateArgs() {
-        if (targets == null || size == 0 || size > WPuzzle.MAX_SIZE) {
-            System.err.println(getArgStructure());
-            System.exit(1);
+        if (targets == null || size == 0 || size > WPuzzle.MAX_SIZE || ps == null) {
+            error();
         }
     }
 
-    private static void readArgs(String[] args) {
+    private static void readArgs(String[] args) throws FileNotFoundException {
+
+        // each argument need a value
+        if (args.length % 2 != 0) return;
 
         for (int i = 0; i < args.length; i++) {
             String current_arg = args[i];
             switch (current_arg) {
                 case "-i":
+                    // file for targets
                     String fileOfTargets = args[++i];
                     targets = readTargets(fileOfTargets);
                     break;
                 case "-s":
+                    // size 
                     size = Integer.parseInt(args[++i]);
-                    break;    
+                    break; 
+                case "-o":
+                    // output stream
+                    ps = new PrintStream(args[++i]); 
+                    break;       
                 default:
-                    System.err.println(getArgStructure());
-                    System.exit(1);
+                    error();
             }
         }
+    }
+
+    private static void error() {
+        System.err.println(getArgStructure());
+        System.exit(1);
     }
 
     private static String getArgStructure() {

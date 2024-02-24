@@ -1,8 +1,10 @@
 package lab01;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WSGenerator {
 
@@ -79,9 +81,23 @@ public class WSGenerator {
         return "Args: <-i:targetsFile> <-s:size>";
     }
 
-    private static ArrayList<String> readTargets(String fileOfTargets) {
+    private static ArrayList<String> readTargets(String fileOfTargets) throws FileNotFoundException {
+        Scanner input = new Scanner(new FileReader(fileOfTargets));
         ArrayList<String> targetsList = new ArrayList<>();
-        targetsList.add("zzzzzzzzzz");
+
+        while (input.hasNextLine()){
+
+            String[] targetLine = input.nextLine().split("[\\s,;.]+"); 
+            for (String target : targetLine){
+                if (!WPuzzleLoad.isTargetValid(target)){
+                    input.close();
+                    return null;
+                }
+                targetsList.add(target);
+            }
+        }
+        
+        input.close();
         return targetsList;
     }
 

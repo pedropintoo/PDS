@@ -18,15 +18,9 @@ public class WSGenerator {
             System.err.println("Puzzle can't be generated!");
             System.exit(1);
         }
-
+        char[][] puzzleArray = puzzle.getPuzzleArray();
         System.out.println("Puzzle:");
-        for (int i = 0; i < puzzle.getSize(); i++){
-            for (int j = 0; j < puzzle.getSize(); j++){
-                System.out.print(puzzle.getPuzzleArray()[i][j]);
-            }
-            System.out.println();
-        }
-
+        WPuzzle.printPuzzleWithoutSpace(puzzleArray,size);
 
     }
 

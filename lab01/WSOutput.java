@@ -36,7 +36,7 @@ public class WSOutput {
 
     private static void printSolvedPuzzle(WSSolver wSolver) {
         char[][] puzzleArray = initializePuzzleArray(wSolver);
-
+        
         // fill the puzzle array with the found targets
         Map<String, ArrayList<Vector>> targets_map = wSolver.getTargets_map();
         for (String target : targets_map.keySet()){
@@ -51,6 +51,7 @@ public class WSOutput {
                 }
             }
         }
+        System.out.println();
         WPuzzle.printPuzzle(puzzleArray, wSolver.getPuzzle().getSize());
     }
 

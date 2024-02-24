@@ -14,8 +14,8 @@ public class WSGenerator {
         ArrayList<String> targets = new ArrayList<>();
         targets.add("programming");
         targets.add("flask");
-        targets.add("zzzzzzzzz");
-        targets.add("zzzaaaazzz");
+        targets.add("abcdef");
+        targets.add("agffgaa");
 
         WPuzzle puzzle = WRandomPuzzle.generateRandomPuzzle(targets, size);
 

@@ -8,7 +8,7 @@ public enum WSDirection {
     },
     RIGHT_UP{
         public String toString() {
-            return "RightUp";
+            return "UpRight";
         }
     },
     RIGHT{
@@ -18,7 +18,7 @@ public enum WSDirection {
     },
     RIGHT_DOWN{
         public String toString() {
-            return "RightDown";
+            return "DownRight";
         }
     },
     DOWN{
@@ -28,7 +28,7 @@ public enum WSDirection {
     },
     LEFT_DOWN{
         public String toString() {
-            return "LeftDown";
+            return "DownLeft";
         }
     },
     LEFT{
@@ -38,7 +38,7 @@ public enum WSDirection {
     },
     LEFT_UP{
         public String toString() {
-            return "LeftUp";
+            return "UpLeft";
         }
     }
 }

@@ -71,15 +71,14 @@ public class WRandomPuzzle {
             if (current == null) continue; // TRIPLE-BREAK
 
             if(isValidPuzzle(puzzleArray, targets, size)) break; // Success
-
         }
-        
+       
         return puzzleArray;
     }
 
     private static boolean isValidPuzzle(char[][] puzzleArray, ArrayList<String> targets, int size) {
         // Check Valid by solving!
-
+        
         WSSolver solver = new WSSolver(new WPuzzle(puzzleArray, targets, size));
         solver.solve();
         return solver.getState() == WSState.SOLVED;

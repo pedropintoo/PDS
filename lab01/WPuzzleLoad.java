@@ -12,11 +12,11 @@ public class WPuzzleLoad {
         String line = input.nextLine();
         int cols = line.length();
         int rows = 0;
-        char[][] puzzleArray = new char[40][40]; // 40x40 is the maximum size
+        char[][] puzzleArray = new char[WPuzzle.MAX_SIZE][WPuzzle.MAX_SIZE]; // the maximum size
         ArrayList<String> targets = new ArrayList<>();
         String regex = "[A-Z]{" + cols + "}";
 
-        if (!line.matches(regex) || cols < 1 || cols > 40){
+        if (!line.matches(regex) || cols < 1 || cols > WPuzzle.MAX_SIZE){
             input.close();
             return null;
         }

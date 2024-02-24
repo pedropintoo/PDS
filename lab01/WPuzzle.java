@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class WPuzzle {
     
+    public static int MAX_SIZE = 40;
     private char[][] puzzleArray;
     private ArrayList<String> targets;
     private int size;

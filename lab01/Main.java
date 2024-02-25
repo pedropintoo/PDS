@@ -2,30 +2,20 @@ package lab01;
 
 public class Main{
 
-    public static void main(String args[]) throws Exception{
-        
-        WPuzzle puzzle = WPuzzleLoad.LoadFromFile("./lab01/test2.txt");
-        
-        // // Tests
-        // if (puzzle == null){
-        //     System.out.println("Invalid puzzle");
-        //     return;
-        // }
-        // System.out.println("Puzzle loaded successfully");
-
-        // System.out.println("Puzzle:");
-        // for (int i = 0; i < puzzle.getSize(); i++){
-        //     for (int j = 0; j < puzzle.getSize(); j++){
-        //         System.out.print(puzzle.getPuzzleArray()[i][j]);
-        //     }
-        //     System.out.println();
-        // }
-
-        // System.out.println("----------");
-
+    public static void main(String args[]){
+        WPuzzle puzzle;
+        try {
+            puzzle = WPuzzleLoad.LoadFromFile("./lab01/test2.txt");
+        } catch (Exception e) {
+            if (e instanceof IllegalArgumentException) {
+                System.out.println(e.getMessage());
+                return;
+            }
+            System.out.println("File not found.");
+            return;
+        }
         WSSolver wSolver = new WSSolver(puzzle);
         wSolver.solve();
         WSOutput.output(wSolver);
-
     }
 }

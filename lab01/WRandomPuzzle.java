@@ -4,7 +4,7 @@ import java.util.Random;
 public class WRandomPuzzle {
 
     private static final Random RANDOM = new Random();
-    private final static int TRIES_BEFORE_RESIGN = (int) 1e10;
+    private final static int TRIES_BEFORE_RESIGN = (int) 1e5;
     private final static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     public static WPuzzle generateRandomPuzzle(ArrayList<String> targets,int size) {
@@ -13,13 +13,19 @@ public class WRandomPuzzle {
         // Therefore, it is a probabilistic algorithm, and success depends on both the input and the value of TRIES_BEFORE_RESIGN.
 
         // simple condition
-        if (!isTargetsLengthValid(targets, size)) return null;
+        if (!isTargetsLengthValid(targets, size)) {
+            System.err.println("Increase the size (targets too small)");
+            return null;
+        }
 
         // Try to insert targets in random positions in a random puzzle
         char[][] puzzleArray = insertTargetsInPuzzle(targets, size);
 
         // Check if the puzzle was created
-        if (puzzleArray == null) return null;
+        if (puzzleArray == null) { 
+            System.err.println("Puzzle cannot be created! (try again or increase the size)");
+            return null;
+        }
 
         return new WPuzzle(puzzleArray,targets,size);
     }

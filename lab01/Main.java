@@ -6,10 +6,10 @@ public class Main{
             puzzle = WPuzzleLoad.LoadFromFile(args[0]);
         } catch (Exception e) {
             if (e instanceof IllegalArgumentException) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
                 return;
             }
-            System.out.println("File not found.");
+            System.err.println("File not found.");
             return;
         }
         WSSolver wSolver = new WSSolver(puzzle);

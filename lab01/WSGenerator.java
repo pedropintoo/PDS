@@ -88,7 +88,13 @@ public class WSGenerator {
     }
 
     private static ArrayList<String> readTargets(String fileOfTargets) throws FileNotFoundException {
-        Scanner input = new Scanner(new FileReader(fileOfTargets));
+        Scanner input;
+        try {
+            input = new Scanner(new FileReader(fileOfTargets));
+        } catch (Exception e) {
+            System.err.println("File not found.");
+            return null;
+        }
         ArrayList<String> targetsList = new ArrayList<>();
 
         while (input.hasNextLine()){

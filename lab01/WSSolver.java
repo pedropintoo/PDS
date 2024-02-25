@@ -4,6 +4,22 @@ import java.util.Map;
 
 public class WSSolver {
     
+    private WSState state;
+    private WPuzzle puzzle;
+
+    private final Map<String,ArrayList<Vector>> targets_map;
+
+    public WSSolver(WPuzzle puzzle) {
+        this.puzzle = puzzle;
+        this.state = WSState.READY;
+
+        // Initialize the structure that holds the results
+        this.targets_map = new LinkedHashMap<>();
+        for (String target : puzzle.getTargets()) {
+            targets_map.put(target, new ArrayList<>());
+        }
+    }
+
     public static void main(String args[]){
         WPuzzle puzzle;
         try {
@@ -21,21 +37,7 @@ public class WSSolver {
         WSOutput.output(wSolver);
     }
 
-    private WSState state;
-    private WPuzzle puzzle;
 
-    private final Map<String,ArrayList<Vector>> targets_map;
-
-    public WSSolver(WPuzzle puzzle) {
-        this.puzzle = puzzle;
-        this.state = WSState.READY;
-
-        // Initialize the structure that holds the results
-        this.targets_map = new LinkedHashMap<>();
-        for (String target : puzzle.getTargets()) {
-            targets_map.put(target, new ArrayList<>());
-        }
-    }
 
     // Word Search Solver
     // Base method
@@ -138,4 +140,55 @@ public class WSSolver {
         return puzzle;
     }
 
+    // Print
+
+    private void printHeader(){
+        Map<String, ArrayList<Vector>> targets_map = this.getTargets_map();
+        for (String target : targets_map.keySet()) {
+            ArrayList<Vector> innerMap = targets_map.get(target);
+            Vector vector = innerMap.get(0); // if the puzzle is valid, the target will be found only once
+            Point root = vector.getRoot();
+            WSDirection direction = vector.getDirection();
+            int size = vector.getSize();
+
+            System.out.printf("%-16s%-7d%-10s%-15s", target, size, root, direction);
+            System.out.println();
+        }
+    }
+
+    public void printSolvedPuzzle() {
+        this.printHeader();
+
+        char[][] puzzleArray = this.initializePuzzleArray();
+        
+        // fill the puzzle array with the found targets
+        Map<String, ArrayList<Vector>> targets_map = this.getTargets_map();
+        for (String target : targets_map.keySet()){
+            for (int i = 0; i < targets_map.get(target).size(); i++){
+                Vector vector = targets_map.get(target).get(i);
+                Point root = vector.getRoot();
+                WSDirection direction = vector.getDirection();
+                int sizeVector = vector.getSize();
+                for (int j = 0; j < sizeVector; j++){
+                    puzzleArray[root.getY()][root.getX()] = Character.toUpperCase(target.charAt(j));
+                    root = root.getPointInDirection(direction);
+                }
+            }
+        }
+        System.out.println();
+        WPuzzle solvedPuzzle = new WPuzzle(puzzleArray, this.getPuzzle().getTargets(), this.getPuzzle().getSize());
+        solvedPuzzle.printPuzzle();
+    }
+
+    private char[][] initializePuzzleArray() {
+        // initialize a blank puzzle array (with '.')
+        char[][] puzzleArray = this.getPuzzle().getPuzzleArray();
+        int size = this.getPuzzle().getSize();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                puzzleArray[i][j] = '.';
+            }
+        }
+        return puzzleArray;
+    }
 }

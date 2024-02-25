@@ -3,7 +3,7 @@ public class Main{
     public static void main(String args[]){
         WPuzzle puzzle;
         try {
-            puzzle = WPuzzleLoad.LoadFromFile("./lab01/test2.txt");
+            puzzle = WPuzzleLoad.LoadFromFile(args[0]);
         } catch (Exception e) {
             if (e instanceof IllegalArgumentException) {
                 System.out.println(e.getMessage());

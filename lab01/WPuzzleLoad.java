@@ -7,17 +7,21 @@ public class WPuzzleLoad {
     
     public static WPuzzle LoadFromFile(String filename) throws FileNotFoundException{
         Scanner input = new Scanner(new FileReader(filename));
+        
         String line = input.nextLine();
         int cols = line.length();
         int rows = 0;
+
         char[][] puzzleArray = new char[WPuzzle.MAX_SIZE][WPuzzle.MAX_SIZE]; // the maximum size
         ArrayList<String> targets = new ArrayList<>();
-        String regex = "[A-Z]{" + cols + "}";
 
-        if (!line.matches(regex) || cols < 1 || cols > WPuzzle.MAX_SIZE){
+        String puzzle_regex = "[A-Z]{" + cols + "}";
+
+        if (!line.matches(puzzle_regex) || cols < 1 || cols > WPuzzle.MAX_SIZE){
             input.close();
             throw new IllegalArgumentException("The maze is invalid.");
         }
+        // Save line
         puzzleArray[rows] = line.toCharArray(); 
         rows++;
         
@@ -25,10 +29,11 @@ public class WPuzzleLoad {
             //While rows < cols, keep reading the matrix of characters
             if (rows < cols){
                 line = input.nextLine();
-                if (line.length() != cols || !line.matches(regex)){
+                if (line.length() != cols || !line.matches(puzzle_regex)){
                     input.close();
                     throw new IllegalArgumentException("The maze is invalid.");
                 }
+                // Save line
                 puzzleArray[rows] = line.toCharArray();
                 rows++;
             } else {

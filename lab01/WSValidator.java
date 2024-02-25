@@ -28,7 +28,7 @@ public class WSValidator {
                 }
             }
             if (isPalindrome(target)){
-                // After removing the invalid points, if the target is a capicua, we remove the reversed vector
+                // After removing the invalid points, if the target is a palindrome, we remove the reversed vector
                 // Its only removed the second one because we assume that the target was found only once
                 // And, if it was found more than once, that case will be checked after in the validate method
                 ArrayList<Vector> targetVectors = targets_map.get(target);

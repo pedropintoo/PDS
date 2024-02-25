@@ -1,52 +1,43 @@
 # Aula01 - Notes
 
-to do
+## Objective 1 - Word Search Solver 
 
-..
-VALIDACAO EM RUNTIME!
+Read a word search puzzle from a file and solve it.
+This was a recursive approach to solve the puzzle.
 
-ler contar
-ver minuscula
+```
+$ java WSSolver sdl_01.txt 
+ 
+programming     11      12,6    Up    
+java            4       9,1     Down  
+words           5       11,11   UpLeft 
+lines           5       5,6     Left  
+civil           5       6,11    Down  
+test            4       2,8     Right 
+stack           5       1,1     Right 
+ 
+S T A C K . . . . . . .  
+. . . . . G . T E S T .  
+. . . . . N . . . . . .  
+. . . . . I . . . . . .  
+S E N I L M . . . . . . 
+. . . . . M . . . . C .  
+. . . . . A S . . . I .  
+. . . . . R . D . . V .  
+J . . . . G . . R . I .  
+A . . . . O . . . O L .  
+V . . . . R . . . . W .  
+A . . . . P . . . . . .
+```
 
-targets em minusculas e com regex " " ";" "," "."
-
-7.- apenas podem estar 1 vez! ... 
-lookup
-nao podemos parar a pesquisa
-
-
-Hash Map
-
-k   |   v
-Ola     [((0,1), up), ... ] -> SE TIVER MAIS DE 1 ELEMENTO ENCONTRAMOS MAIS DE UMA PALAVRA (ATENCAO AO 8.-)
-Bola    [...]
+Files with examples of word search puzzles are in the `date` directory.
+```
+sdl_01.txt > out1.txt
+sdl_02.txt > out2.txt
+sdl_03.txt > out3.txt
+```
 
 
-Right      (1,0)
-Left       (-1,0)
-Up         (0,1)
-Down       (0,-1)
-Right-Up   (1,1)
-Right-Down (1,-1)
-Left-Up    (-1,1)
-Left-Down  (-1,-1)
+## Objective 2 - Word Search Generator
 
-
-Algoritmo Recursivo
-
--Posicao
--Vetor direcao
--Palavra
-
-O x x
-x L x
-x x A
-
--Posicao        (0,0)               (0,0)               (0,0)
--Vetor direcao  (0,1)               (1,-1)              (1,-1)
--Palavra        "LA"                "LA" (ENCONTREI)    "A" (ECONTREI e acabou! "")
-                  X (NAO ENCONTREI)                         RETORNAR TRUE!!!
-                  testar outra direcao
-
-Depois de retornar o True preenchemos o Mapa:
-Ola     [((0,0), right-down)]
+Puzzle Generator - Word Search

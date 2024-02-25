@@ -11,7 +11,7 @@ public class WSGenerator {
     private static String fileOfTargets = null;
     private static PrintStream ps = System.out;
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
 
         readArgs(args);
 
@@ -27,7 +27,7 @@ public class WSGenerator {
 
     }
 
-    private static void printOutput(WPuzzle puzzle) throws FileNotFoundException {
+    private static void printOutput(WPuzzle puzzle) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 ps.print(puzzle.getPuzzleArray()[i][j]);
@@ -37,8 +37,14 @@ public class WSGenerator {
         printTargets();
     }
 
-    private static void printTargets() throws FileNotFoundException {
-        Scanner sc = new Scanner(new FileReader(fileOfTargets));
+    private static void printTargets() {
+        Scanner sc;
+        try {
+            sc = new Scanner(new FileReader(fileOfTargets));
+        } catch (Exception e) {
+            System.err.println("File not found.");
+            return;
+        }
         while (sc.hasNextLine()) {
             ps.println(sc.nextLine());
         }
@@ -51,7 +57,7 @@ public class WSGenerator {
         }
     }
 
-    private static void readArgs(String[] args) throws FileNotFoundException {
+    private static void readArgs(String[] args) {
 
         // each argument need a value
         if (args.length % 2 != 0) return;
@@ -70,7 +76,12 @@ public class WSGenerator {
                     break; 
                 case "-o":
                     // output stream
-                    ps = new PrintStream(args[++i]); 
+                    try {
+                        ps = new PrintStream(args[++i]); 
+                    } catch (Exception e) {
+                        System.err.println("File not found.");
+                        return;
+                    }     
                     break;       
                 default:
                     error();
@@ -87,7 +98,7 @@ public class WSGenerator {
         return "Args: <-i:targetsFile> <-s:size>";
     }
 
-    private static ArrayList<String> readTargets(String fileOfTargets) throws FileNotFoundException {
+    private static ArrayList<String> readTargets(String fileOfTargets) {
         Scanner input;
         try {
             input = new Scanner(new FileReader(fileOfTargets));

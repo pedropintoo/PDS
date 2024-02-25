@@ -27,7 +27,7 @@ public class WSValidator {
                     removeInvalidPoints(targetVectors, targetToCompareVectors);                    
                 }
             }
-            if (isCapicua(target)){
+            if (isPalindrome(target)){
                 // After removing the invalid points, if the target is a capicua, we remove the reversed vector
                 // Its only removed the second one because we assume that the target was found only once
                 // And, if it was found more than once, that case will be checked after in the validate method
@@ -88,7 +88,7 @@ public class WSValidator {
         return false;
     }  
 
-    private static boolean isCapicua(String target){
+    private static boolean isPalindrome(String target){
         int length = target.length();
         for (int i = 0; i < length/2; i++){
             if (target.charAt(i) != target.charAt(length - i - 1)) return false;

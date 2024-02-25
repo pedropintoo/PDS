@@ -1,5 +1,3 @@
-package lab01;
-
 // Class to Support Puzzle
 public class Point {
 

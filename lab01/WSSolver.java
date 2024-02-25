@@ -140,7 +140,7 @@ public class WSSolver {
         return puzzle;
     }
 
-    // Print
+    // Print Output solver
 
     private void printHeader(){
         Map<String, ArrayList<Vector>> targets_map = this.getTargets_map();

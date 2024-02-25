@@ -18,7 +18,7 @@ public class WPuzzleLoad {
 
         if (!line.matches(regex) || cols < 1 || cols > WPuzzle.MAX_SIZE){
             input.close();
-            return null;
+            throw new IllegalArgumentException("Invalid puzzle");
         }
         puzzleArray[rows] = line.toCharArray(); 
         rows++;
@@ -29,7 +29,7 @@ public class WPuzzleLoad {
                 line = input.nextLine();
                 if (line.length() != cols || !line.matches(regex)){
                     input.close();
-                    return null;
+                    throw new IllegalArgumentException("Invalid puzzle");
                 }
                 puzzleArray[rows] = line.toCharArray();
                 rows++;
@@ -41,7 +41,7 @@ public class WPuzzleLoad {
                 for (String target : targetLine){
                     if (!isTargetValid(target)){
                         input.close();
-                        return null;
+                        throw new IllegalArgumentException("Invalid puzzle");
                     }
                     targets.add(target);
                 }

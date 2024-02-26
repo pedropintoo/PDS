@@ -5,6 +5,8 @@ Pedro Pinto (pmap@ua.pt)
 Guilherme Santos (gui.santos91@ua.pt)
 ```
 
+Compile .java code: `javac */*.java`
+
 ## Objective 1 - Word Search Solver 
 
 Read a word search puzzle from a file and solve it.

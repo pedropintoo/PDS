@@ -1,6 +1,19 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package src;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import struct.WPuzzle;
+import struct.WPuzzleLoad;
+import struct.WSOutput;
+import struct.WSValidator;
+import utils.*;
 
 public class WSSolver {
     

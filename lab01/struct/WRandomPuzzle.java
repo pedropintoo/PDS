@@ -1,5 +1,17 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package struct;
+
 import java.util.ArrayList;
 import java.util.Random;
+
+import src.WSSolver;
+import utils.Point;
+import utils.WSDirection;
+import utils.WSState;
 
 public class WRandomPuzzle {
 

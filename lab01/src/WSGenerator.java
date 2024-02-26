@@ -1,7 +1,18 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package src;
+
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import struct.WPuzzle;
+import struct.WPuzzleLoad;
+import struct.WRandomPuzzle;
 
 public class WSGenerator {
 

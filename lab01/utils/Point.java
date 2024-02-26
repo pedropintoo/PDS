@@ -1,3 +1,10 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package utils;
+
 // Class to Support Puzzle
 public class Point {
 
@@ -6,7 +13,7 @@ public class Point {
     private final int y;
     private final int limit;
 
-    Point(int x, int y, int limit) {
+    public Point(int x, int y, int limit) {
         this.x = x;
         this.y = y;
         this.limit = limit;

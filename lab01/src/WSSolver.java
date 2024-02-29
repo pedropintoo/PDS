@@ -1,6 +1,19 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package src;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import struct.WPuzzle;
+import struct.WPuzzleLoad;
+import struct.WSOutput;
+import struct.WSValidator;
+import utils.*;
 
 public class WSSolver {
     
@@ -50,8 +63,8 @@ public class WSSolver {
 
         for (int y = 0; y < puzzle.getSize(); y++){
             for (int x = 0; x < puzzle.getSize(); x++){
-                ArrayList<String> resTargets = getRestrictTargets(puzzle.getPuzzleArray()[y][x]);
-                for (String target : resTargets) {
+                ArrayList<String> restrictTargets = getRestrictTargets(puzzle.getPuzzleArray()[y][x]);
+                for (String target : restrictTargets) {
                     Point start = new Point(x,y,puzzle.getSize());
 
                     // We pass the full target because of the mapping 
@@ -81,10 +94,10 @@ public class WSSolver {
                 // Testing the letter
                 int x = next.getX(); 
                 int y = next.getY();
-                char next_letter = puzzle.getPuzzleArray()[y][x];
+                char nextLetter = puzzle.getPuzzleArray()[y][x];
                 
                 // (remember: we already test the first char!) 
-                if (Character.toLowerCase(target.charAt(1)) == Character.toLowerCase(next_letter)) {
+                if (Character.toLowerCase(target.charAt(1)) == Character.toLowerCase(nextLetter)) {
                     // Is the correct letter!
                     // So, change the direction
                     if(solveRec(next, dir, target.substring(2))) {
@@ -102,9 +115,9 @@ public class WSSolver {
             // Testing the letter
             int x = next.getX(); 
             int y = next.getY();
-            char next_letter = puzzle.getPuzzleArray()[y][x];
+            char nextLetter = puzzle.getPuzzleArray()[y][x];
 
-            if (Character.toLowerCase(target.charAt(0)) == Character.toLowerCase(next_letter)) {
+            if (Character.toLowerCase(target.charAt(0)) == Character.toLowerCase(nextLetter)) {
                 // Is the correct letter!
                 // 
                 return solveRec(next, direction, target.substring(1));
@@ -116,14 +129,14 @@ public class WSSolver {
     }
 
     private ArrayList<String> getRestrictTargets(char c){
-        ArrayList<String> restrict_targets = new ArrayList<>();
+        ArrayList<String> restrictTargets = new ArrayList<>();
 
         // If the first character of the target string is equal
         // to argument character we add in the ArrayList of Restrict Targets
         for (String str : puzzle.getTargets()) {
-            if(Character.toLowerCase(str.charAt(0)) == Character.toLowerCase(c)) restrict_targets.add(str);
+            if(Character.toLowerCase(str.charAt(0)) == Character.toLowerCase(c)) restrictTargets.add(str);
         }
-        return restrict_targets;
+        return restrictTargets;
     }
 
     // Getters

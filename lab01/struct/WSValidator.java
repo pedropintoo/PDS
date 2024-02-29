@@ -1,10 +1,26 @@
+/*
+ * Created on Mon Feb 26 2024
+ *
+ * Copyright (c) 2024 - Pedro Pinto (pmap@ua.pt) ; Guilherme Santos (gui.santos91@ua.pt)
+ */
+package struct;
+
 import java.util.ArrayList;
 import java.util.Map;
 
+import src.WSSolver;
+import utils.Point;
+import utils.Vector;
+
 public class WSValidator {
     public static boolean validate(WSSolver wSolver) {
-        filter(wSolver);
-        // Validate if every target was found and only one time
+        removeInvalidSolutions(wSolver);
+
+        return isValid(wSolver);
+    }
+
+    // Validate if every target was found and only one time
+    public static boolean isValid(WSSolver wSolver) {
         for (Map.Entry<String, ArrayList<Vector>> targetsMap : wSolver.getTargets_map().entrySet()) {
             ArrayList<Vector> list_vectors = targetsMap.getValue();
             int occurrences = list_vectors.size();
@@ -12,15 +28,16 @@ public class WSValidator {
             if (occurrences == 0 || occurrences > 1) return false;
         }
         return true;
-
     }
 
-    private static void filter(WSSolver wsSolver){
+    // Remove invalid solutions that have been made, i.g. when a word
+    // is inside other word or if it a palindrome
+    private static void removeInvalidSolutions(WSSolver wsSolver){
         Map<String, ArrayList<Vector>> targets_map = wsSolver.getTargets_map();
 
         for (String target : targets_map.keySet()){
             for (String targetToCompare : targets_map.keySet()){
-                if (isTargetToCompareCandidate(target, targetToCompare)){
+                if (isTargetMatching(target, targetToCompare)){
                     ArrayList<Vector> targetVectors = targets_map.get(target);
                     ArrayList<Vector> targetToCompareVectors = targets_map.get(targetToCompare);
 
@@ -38,7 +55,7 @@ public class WSValidator {
         } 
     }
 
-    private static boolean isTargetToCompareCandidate(String target, String targetToCompare){
+    private static boolean isTargetMatching(String target, String targetToCompare){
         return !target.equals(targetToCompare) && targetToCompare.contains(target);
     }
 

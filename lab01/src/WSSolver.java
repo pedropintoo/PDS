@@ -63,8 +63,8 @@ public class WSSolver {
 
         for (int y = 0; y < puzzle.getSize(); y++){
             for (int x = 0; x < puzzle.getSize(); x++){
-                ArrayList<String> resTargets = getRestrictTargets(puzzle.getPuzzleArray()[y][x]);
-                for (String target : resTargets) {
+                ArrayList<String> restrictTargets = getRestrictTargets(puzzle.getPuzzleArray()[y][x]);
+                for (String target : restrictTargets) {
                     Point start = new Point(x,y,puzzle.getSize());
 
                     // We pass the full target because of the mapping 
@@ -129,14 +129,14 @@ public class WSSolver {
     }
 
     private ArrayList<String> getRestrictTargets(char c){
-        ArrayList<String> restrict_targets = new ArrayList<>();
+        ArrayList<String> restrictTargets = new ArrayList<>();
 
         // If the first character of the target string is equal
         // to argument character we add in the ArrayList of Restrict Targets
         for (String str : puzzle.getTargets()) {
-            if(Character.toLowerCase(str.charAt(0)) == Character.toLowerCase(c)) restrict_targets.add(str);
+            if(Character.toLowerCase(str.charAt(0)) == Character.toLowerCase(c)) restrictTargets.add(str);
         }
-        return restrict_targets;
+        return restrictTargets;
     }
 
     // Getters

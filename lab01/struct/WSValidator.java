@@ -16,22 +16,18 @@ public class WSValidator {
     public static boolean validate(WSSolver wSolver) {
         removeInvalidSolutions(wSolver);
 
-        return isValid(wSolver);
-    }
-
-    // Validate if every target was found and only one time
-    public static boolean isValid(WSSolver wSolver) {
+        // Validate if every target was found and only one time
         for (Map.Entry<String, ArrayList<Vector>> targetsMap : wSolver.getTargets_map().entrySet()) {
             ArrayList<Vector> list_vectors = targetsMap.getValue();
             int occurrences = list_vectors.size();
             
-            if (occurrences == 0 || occurrences > 1) return false;
+            if (occurrences != 1) return false;
         }
         return true;
     }
-
+    
     // Remove invalid solutions that have been made, i.g. when a word
-    // is inside other word or if it a palindrome
+    // is inside other word or if it is a palindrome
     private static void removeInvalidSolutions(WSSolver wsSolver){
         Map<String, ArrayList<Vector>> targets_map = wsSolver.getTargets_map();
 

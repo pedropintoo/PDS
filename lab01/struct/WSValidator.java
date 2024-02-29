@@ -18,7 +18,7 @@ public class WSValidator {
 
         return isValid(wSolver);
     }
-    
+
     // Validate if every target was found and only one time
     public static boolean isValid(WSSolver wSolver) {
         for (Map.Entry<String, ArrayList<Vector>> targetsMap : wSolver.getTargets_map().entrySet()) {
@@ -37,7 +37,7 @@ public class WSValidator {
 
         for (String target : targets_map.keySet()){
             for (String targetToCompare : targets_map.keySet()){
-                if (isTargetToCompareCandidate(target, targetToCompare)){
+                if (isTargetMatching(target, targetToCompare)){
                     ArrayList<Vector> targetVectors = targets_map.get(target);
                     ArrayList<Vector> targetToCompareVectors = targets_map.get(targetToCompare);
 
@@ -55,7 +55,7 @@ public class WSValidator {
         } 
     }
 
-    private static boolean isTargetToCompareCandidate(String target, String targetToCompare){
+    private static boolean isTargetMatching(String target, String targetToCompare){
         return !target.equals(targetToCompare) && targetToCompare.contains(target);
     }
 

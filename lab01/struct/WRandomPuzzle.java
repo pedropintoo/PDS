@@ -17,7 +17,7 @@ public class WRandomPuzzle {
 
     private static final Random RANDOM = new Random();
     private final static int TRIES_BEFORE_RESIGN = (int) 1e5;
-    private final static char[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    private final static char[] LETTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     public static WPuzzle generateRandomPuzzle(ArrayList<String> targets,int size) {
         // [Not the best algorithm]
@@ -115,8 +115,8 @@ public class WRandomPuzzle {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                int randIdx = RANDOM.nextInt(letters.length);
-                puzzleArray[i][j] = letters[randIdx];
+                int randIdx = RANDOM.nextInt(LETTERS.length);
+                puzzleArray[i][j] = LETTERS[randIdx];
             }
         }
 

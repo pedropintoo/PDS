@@ -18,7 +18,7 @@ public class WSValidator {
 
         return isValid(wSolver);
     }
-
+    
     // Validate if every target was found and only one time
     public static boolean isValid(WSSolver wSolver) {
         for (Map.Entry<String, ArrayList<Vector>> targetsMap : wSolver.getTargets_map().entrySet()) {

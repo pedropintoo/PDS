@@ -94,10 +94,10 @@ public class WSSolver {
                 // Testing the letter
                 int x = next.getX(); 
                 int y = next.getY();
-                char next_letter = puzzle.getPuzzleArray()[y][x];
+                char nextLetter = puzzle.getPuzzleArray()[y][x];
                 
                 // (remember: we already test the first char!) 
-                if (Character.toLowerCase(target.charAt(1)) == Character.toLowerCase(next_letter)) {
+                if (Character.toLowerCase(target.charAt(1)) == Character.toLowerCase(nextLetter)) {
                     // Is the correct letter!
                     // So, change the direction
                     if(solveRec(next, dir, target.substring(2))) {
@@ -115,9 +115,9 @@ public class WSSolver {
             // Testing the letter
             int x = next.getX(); 
             int y = next.getY();
-            char next_letter = puzzle.getPuzzleArray()[y][x];
+            char nextLetter = puzzle.getPuzzleArray()[y][x];
 
-            if (Character.toLowerCase(target.charAt(0)) == Character.toLowerCase(next_letter)) {
+            if (Character.toLowerCase(target.charAt(0)) == Character.toLowerCase(nextLetter)) {
                 // Is the correct letter!
                 // 
                 return solveRec(next, direction, target.substring(1));

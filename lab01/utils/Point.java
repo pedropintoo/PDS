@@ -90,24 +90,32 @@ public class Point {
         switch(direction){
             case UP:
                 endy -= size-1;
+                break;
             case RIGHT_UP:
                 endx += size-1;
                 endy -= size-1;
+                break;
             case RIGHT:
                 endx += size-1;
+                break;
             case RIGHT_DOWN:
                 endx += size-1;
                 endy += size-1;
+                break;
             case DOWN:
                 endy += size-1;
+                break;
             case LEFT_DOWN:
                 endx -= size-1;
                 endy += size-1;
+                break;
             case LEFT:
                 endx -= size-1;
+                break;
             case LEFT_UP:
                 endx -= size-1;
                 endy -= size-1;
+                break;
         }
 
         return new Point(endx, endy, startPoint.getLimit());

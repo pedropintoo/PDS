@@ -1,4 +1,4 @@
-package lab03;
+package lab03.galo;
 
 public class JGaloImplementation implements JGaloInterface {
 

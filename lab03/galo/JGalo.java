@@ -1,4 +1,4 @@
-package lab03;
+package lab03.galo;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

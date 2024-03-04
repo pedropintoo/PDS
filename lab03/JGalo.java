@@ -1,4 +1,4 @@
-package lab3;
+package lab03;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -61,6 +61,7 @@ public class JGalo extends JFrame implements ActionListener {
 	}
 
 	public static void main(String args[]) {
-		new JGalo( /* something here */ );
+		JGaloImplementation jImplementation = new JGaloImplementation();
+		new JGalo(jImplementation);
 	}
 } 

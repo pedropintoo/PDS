@@ -38,23 +38,15 @@ public class JGaloImplementation implements JGaloInterface {
         if (result != DEFAULT_CELL) {
             return result;
         }
-        result = checkLineWin();
-        if (result != DEFAULT_CELL) {
-            return result;
-        }
-        result = checkDiagonalWin();
-        if (result != DEFAULT_CELL) {
-            return result;
-        }
-        return DEFAULT_CELL;
+        return checkDiagonalWin();
     }
 
     private char checkLineWin() {
         for (int i = 0; i < 3; i++) {
-            char firstHorizontalCell = tableTicTacToe[0][i];
-            char firstVerticalCell = tableTicTacToe[i][0];
-            if (firstHorizontalCell == tableTicTacToe[1][i] && firstHorizontalCell == tableTicTacToe[2][i] ||
-                firstVerticalCell == tableTicTacToe[i][1] && firstVerticalCell == tableTicTacToe[i][2]) {
+            char firstHorizontalCell = tableTicTacToe[i][0];
+            char firstVerticalCell = tableTicTacToe[0][i];
+            if (firstHorizontalCell != DEFAULT_CELL && firstHorizontalCell == tableTicTacToe[i][1] && firstHorizontalCell == tableTicTacToe[i][2] ||
+                firstVerticalCell != DEFAULT_CELL && firstVerticalCell == tableTicTacToe[1][i] && firstVerticalCell == tableTicTacToe[2][i]) {
                 return tableTicTacToe[i][i];
             }
         }

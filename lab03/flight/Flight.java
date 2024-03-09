@@ -49,7 +49,40 @@ public class Flight {
 
     // Cancel a reservation (if possible) in the Flight
     public boolean cancelReservation(int RID) {
-        return true;
+        int rows = this.getRowsTouristic();
+        int cols = this.getColsTouristic();
+        int [][] touristicArray = this.getTouristicArray();
+        int removed = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (touristicArray[i][j] == RID) {
+                    touristicArray[i][j] = 0;
+                    removed++;
+                }
+            }
+        }
+
+        if (this.hasExclusive()){
+            rows = this.getRowsExclusive();
+            cols = this.getColsExclusive();
+            int [][] exclusiveArray = this.getExclusiveArray();
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (exclusiveArray[i][j] == RID) {
+                        exclusiveArray[i][j] = 0;
+                        removed++;
+                    }
+                }
+            }
+        }
+        
+        return removed > 0;
+    }
+
+    private boolean hasExclusive(){
+        return this.exclusiveArray != null;
     }
 
     //Getters
@@ -64,6 +97,22 @@ public class Flight {
 
     public String getFlightCode(){
         return this.flightCode;
+    }
+
+    public int getRowsTouristic(){
+        return this.rowsTouristic;
+    }
+
+    public int getColsTouristic(){
+        return this.colsTouristic;
+    }
+
+    public int getRowsExclusive(){
+        return this.rowsExclusive;
+    }
+
+    public int getColsExclusive(){
+        return this.colsExclusive;
     }
 
 }

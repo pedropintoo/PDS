@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Flight {
 
-    private static int Rid = 0;
+    private static int counterRID = 0;
     private String flightCode;
 
     // Touristic seats
@@ -43,9 +43,13 @@ public class Flight {
     }
 
     // Reserve a ticket (if possible) in the Flight
-    public void reserveTicket(TicketClass ticketC, int reservations){
-        // Rid++;
-        return;
+    public boolean reserveTicket(TicketClass ticketC, int reservations){
+        return true;
+    }
+
+    // Cancel a reservation (if possible) in the Flight
+    public boolean cancelReservation(int RID) {
+        return true;
     }
 
     //Getters

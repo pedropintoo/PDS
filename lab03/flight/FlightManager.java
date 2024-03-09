@@ -56,20 +56,30 @@ public class FlightManager {
         String[] infoTouristic = info[info.length-1].split("x");
         int colsTouristic = Integer.parseInt(infoTouristic[0]);
         int rowsTouristic = Integer.parseInt(infoTouristic[1]);
+        int seatsTouristic = colsTouristic*rowsTouristic;
 
         Flight flight = null;
+        output("Código de voo "+flightCode+". ");
+        output("Lugares disponíveis: ");
 
         if (info.length == 2) {
             // Only Touristic seats
             flight = new Flight(flightCode, rowsTouristic, colsTouristic);
+            output(seatsTouristic + " lugares em classe Turística.\n");
+            output("Classe executiva não disponível neste voo.\n");
         } else {
             // Touristic seats & Exclusive seats
             String[] infoExclusive = info[1].split("x");
             int colsExclusive = Integer.parseInt(infoExclusive[0]);
             int rowsExclusive = Integer.parseInt(infoExclusive[1]);
+            int seatsExclusive = colsExclusive*rowsExclusive;
             flight = new Flight(flightCode, rowsTouristic, colsTouristic, rowsExclusive, colsExclusive);
-        }
+            
+            output(seatsExclusive + " lugares em classe Executíva; ");
+            output(seatsTouristic + " lugares em classe Turística.\n");
+        } 
         
+
         MapOfFlights.put(flightCode, flight);
         return flight;
     }
@@ -86,14 +96,35 @@ public class FlightManager {
         TicketClass ticketC = TicketClass.getTicketClass(classSym);
         int reservations = Integer.parseInt(info[1]);
 
-        flight.reserveTicket(ticketC, reservations);
+        if(!flight.reserveTicket(ticketC, reservations)) {
+            output("Não foi possível obter lugares para a reserva: "+rConfig+"\n");
+        }
     }
 
-    public void removeFlightByString(String reservationCode) {
-        return;
+    public void cancelReservationByString(String cConfig) {
+        if (!isCancellingCodeValid(cConfig)) {
+            System.err.println("Invalid Cancelling code!");
+            System.exit(1);
+        }
+        
+        String[] info = cConfig.split(" ");
+
+        String flightCode = info[0];
+        Flight flight = MapOfFlights.get(flightCode);
+
+        int reservationID = Integer.parseInt(info[1]);
+        
+        if(!flight.cancelReservation(reservationID)){
+            output("Não foi possível cancelar a reserva: "+cConfig+"\n");
+        }
     }
 
     // Private Methods
+
+    private void output(String str) {
+        // only for clean code
+        System.out.print(str);
+    }
 
     private boolean isHeaderValid(String header) {
 
@@ -124,5 +155,24 @@ public class FlightManager {
 
     private boolean isReservationValid(String reservation) {
         return reservation.matches("[T|E] [1-9][0-9]*");
+    }
+
+    private boolean isCancellingCodeValid(String cConfig) {
+        // flightCode:reservationID
+
+        String[] info = cConfig.split(":");
+        if (info.length != 2) return false;
+
+        String flightCode = info[0];
+        Flight flight = null;
+        flight = MapOfFlights.get(flightCode);
+
+        if (flight == null) return false;
+        
+        String reservationID = info[1];
+
+        if (!reservationID.matches("[1-9][0-9]*")) return false;
+
+        return true;
     }
 }

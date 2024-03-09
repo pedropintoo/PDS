@@ -10,6 +10,6 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         FlightManager fm = new FlightManager();
-        fm.addFlightByFilename("lab03/flight/data/flight1.txt");
+        fm.addFlightByFilename("lab03/flight/data/flight2.txt");
     }
 }

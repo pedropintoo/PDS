@@ -11,5 +11,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         FlightManager fm = new FlightManager();
         fm.addFlightByFilename("lab03/flight/data/flight2.txt");
+        Flight f = fm.getFlight("TP1930");
+        f.showMap();
     }
 }

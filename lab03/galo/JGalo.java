@@ -1,3 +1,8 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt)
+ * @ Create Time: 2024-03-04
+ */
+
 package lab03.galo;
 
 import javax.swing.JFrame;

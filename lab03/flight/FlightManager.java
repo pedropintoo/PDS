@@ -175,4 +175,9 @@ public class FlightManager {
 
         return true;
     }
+
+    // Getters & Setters
+    public Flight getFlight(String flightCode) {
+        return MapOfFlights.get(flightCode);
+    }
 }

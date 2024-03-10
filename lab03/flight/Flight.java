@@ -28,21 +28,14 @@ public class Flight {
     public boolean reserveTicket(TicketClass ticketC, int reservations){
         int[][] seatsArray;
 
-        // Filter reserve ticket
-        if (ticketC == TicketClass.Touristic) {
-            if (reservations > getTouristicTotalSeats() - getTouristicOccupiedSeats()) {
-                // System.out.println("Not enough seats available.");
-                return false;
-            }
+        // Filter seats depending on required ticket
+        if (ticketC == TicketClass.Touristic && hasTouristicSpace(reservations)) {   
             seatsArray = touristicArray;
-        } else if (hasExecutive() && ticketC == TicketClass.Executive) {
-            if (reservations > getExecutiveTotalSeats() - getExecutiveOccupiedSeats()) {
-                // System.out.println("Not enough seats available.");
-                return false;
-            }
+
+        } else if (hasExecutive() && ticketC == TicketClass.Executive && hasExecutiveSpace(reservations)) {
             seatsArray = executiveArray;
+
         } else {
-            // System.out.println("Executive class not available.");
             return false;
         }
         
@@ -241,6 +234,14 @@ public class Flight {
 
     private int getTouristicTotalSeats(){
         return touristicArray.length * touristicArray[0].length;
+    }
+
+    private boolean hasTouristicSpace(int reservations) {
+        return reservations > getTouristicTotalSeats() - getTouristicOccupiedSeats();
+    }
+
+    private boolean hasExecutiveSpace(int reservations) {
+        return reservations > getExecutiveTotalSeats() - getExecutiveOccupiedSeats();
     }
 
     private int getOccupiedSeats(int[][] seatsArray) {

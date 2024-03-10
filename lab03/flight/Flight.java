@@ -158,10 +158,10 @@ public class Flight {
 
 
     public String getLastReserve() {
-        String ret = getSeatsPosition(touristicArray, counterRID);
+        String ret = getSeatsByRID(touristicArray, counterRID);
 
         if (ret == null && hasExecutive()){
-            ret = getSeatsPosition(executiveArray, counterRID);
+            ret = getSeatsByRID(executiveArray, counterRID);
         }
 
         return ret == null ? null : flightCode + ":" + counterRID + " = " + String.join(" | ", ret.trim().split(" "));
@@ -173,7 +173,7 @@ public class Flight {
         return this.executiveArray != null;
     }
 
-    private String getSeatsPosition(int[][] seatsArray, int RID){
+    private String getSeatsByRID(int[][] seatsArray, int RID){
         // Returns a string (e.g. "1A 1B 1C")
         String ret = "";
         int count = 0;

@@ -1,3 +1,8 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt) & Guilherme Santos (gui.santos91@ua.pt)
+ * @ Create Time: 2024-03-10
+ */
+
 import java.io.FileNotFoundException;
 
 public interface FlightManagerInterface {

@@ -3,8 +3,6 @@
  * @ Create Time: 2024-03-04
  */
 
-package lab03.flight;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -71,14 +69,14 @@ public class FlightManager {
             output(seatsTouristic + " lugares em classe Turística.\n");
             output("Classe executiva não disponível neste voo.\n");
         } else {
-            // Touristic seats & Exclusive seats
-            String[] infoExclusive = info[1].split("x");
-            int colsExclusive = Integer.parseInt(infoExclusive[0]);
-            int rowsExclusive = Integer.parseInt(infoExclusive[1]);
-            int seatsExclusive = colsExclusive*rowsExclusive;
-            flight = new Flight(flightCode, rowsTouristic, colsTouristic, rowsExclusive, colsExclusive);
+            // Touristic seats & Executive seats
+            String[] infoExecutive = info[1].split("x");
+            int colsExecutive = Integer.parseInt(infoExecutive[0]);
+            int rowsExecutive = Integer.parseInt(infoExecutive[1]);
+            int seatsExecutive = colsExecutive*rowsExecutive;
+            flight = new Flight(flightCode, rowsTouristic, colsTouristic, rowsExecutive, colsExecutive);
             
-            output(seatsExclusive + " lugares em classe Executíva; ");
+            output(seatsExecutive + " lugares em classe Executíva; ");
             output(seatsTouristic + " lugares em classe Turística.\n");
         } 
         

@@ -3,8 +3,6 @@
  * @ Create Time: 2024-03-04
  */
 
-package lab03.galo;
-
 public interface JGaloInterface {
 	// X or O
 	public abstract char getActualPlayer();

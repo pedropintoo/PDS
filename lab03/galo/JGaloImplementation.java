@@ -3,8 +3,6 @@
  * @ Create Time: 2024-03-04
  */
 
-package lab03.galo;
-
 public class JGaloImplementation implements JGaloInterface {
 
     private static char[][] tableTicTacToe = new char[3][3];

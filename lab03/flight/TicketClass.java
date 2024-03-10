@@ -3,13 +3,11 @@
  * @ Create Time: 2024-03-09
  */
 
-package lab03.flight;
-
 public enum TicketClass {
-    Exclusive,
+    Executive,
     Touristic;
 
     public static TicketClass getTicketClass(char sym) {
-        return sym == 'E' ? Exclusive : Touristic;
+        return sym == 'E' ? Executive : Touristic;
     }
 }

@@ -46,15 +46,15 @@ public class Flight implements FlightInterface{
         // Try to reserve the seats in empty columns
         for (int j = 0; j < cols; j++) {
 
-            // if the first seat is empty, try to reserve the seats in the same column
-            if (seatsArray[0][j] == 0){
+            // First try to find an empty column to reserve the seats
+            if (isColumnEmpty(seatsArray, j)){
                 countSuccess = reserveSeatsInColumn(j, seatsArray, reservations);
                 break;
             }
         }
         boolean success = countSuccess == reservations;
 
-        // If the previous method didn't get completed, try to reserve the seats sequentially
+        // If the previous method didn't get all the reservations, try to reserve the seats sequentially
         if (!success){
             success = reserveSeatsSequentially(seatsArray, reservations, countSuccess);
         }
@@ -71,6 +71,15 @@ public class Flight implements FlightInterface{
         return success;
     }
 
+    private boolean isColumnEmpty(int[][] seatsArray, int targetColumn){
+        int rows = seatsArray.length;
+        for (int i = 0; i < rows; i++) {
+            if (seatsArray[i][targetColumn] != 0){
+                return false;
+            }
+        }
+        return true;
+    }
 
     private int reserveSeatsInColumn(int targetColumn, int[][] seatsArray, int reservations){
         int count = 0;

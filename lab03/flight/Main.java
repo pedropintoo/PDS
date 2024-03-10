@@ -58,5 +58,6 @@ public class Main {
         System.out.println("[F] <flightCode> [seats_executive] <seats_touristic> - acrescenta um novo voo");
         System.out.println("[R] <flightCode> <T|E> <number_seats> - acrescenta uma nova reserva a um voo");
         System.out.println("[C] <flightCode>:<reservationID> - cancela uma reserva");
+        System.out.println("[Q] - termina o programa");
     }
 }

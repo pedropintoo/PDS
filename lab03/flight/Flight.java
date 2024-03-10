@@ -134,7 +134,7 @@ public class Flight {
 
         for (int i = 0; i < totalRows; i++) {
             // Rows label
-            System.out.print((char)('A' + i) + "\t");
+            System.out.print((char)('A' + i));
 
             for (int j = 0; j < totalCols; j++) {
                 if (hasExecutive()){

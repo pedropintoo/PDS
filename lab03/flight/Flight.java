@@ -91,13 +91,10 @@ public class Flight {
 
     // Cancel a reservation (if possible) in the Flight
     public boolean cancelReservation(int RID) {
-        int rows = this.getRowsTouristic();
-        int cols = this.getColsTouristic();
-        int [][] touristicArray = this.getTouristicArray();
         int removed = 0;
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        for (int i = 0; i < touristicArray.length; i++) {
+            for (int j = 0; j < touristicArray[0].length; j++) {
                 if (touristicArray[i][j] == RID) {
                     touristicArray[i][j] = 0;
                     removed++;
@@ -105,13 +102,9 @@ public class Flight {
             }
         }
 
-        if (this.hasExecutive()){
-            rows = this.getRowsExecutive();
-            cols = this.getColsExecutive();
-            int [][] executiveArray = this.getExecutiveArray();
-
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
+        if (removed == 0 && hasExecutive()){
+            for (int i = 0; i < executiveArray.length; i++) {
+                for (int j = 0; j < executiveArray[0].length; j++) {
                     if (executiveArray[i][j] == RID) {
                         executiveArray[i][j] = 0;
                         removed++;

@@ -49,7 +49,7 @@ public class Flight {
         // Check if there are enough seats available and get the array to reserve the seats
         if (ticketC == TicketClass.Touristic) {
             if (reservations > this.touristicTotalSeats() - this.touristicOccupiedSeats()) {
-                System.out.println("Not enough seats available.");
+                //System.out.println("Not enough seats available.");
                 return false;
             }
             seatsArray = this.getTouristicArray();
@@ -57,14 +57,14 @@ public class Flight {
             cols = this.getColsTouristic();
         } else if (ticketC == TicketClass.Exclusive && exclusiveArray != null) {
             if (reservations > this.exclusiveTotalSeats() - this.exclusiveOccupiedSeats()) {
-                System.out.println("Not enough seats available.");
+                //System.out.println("Not enough seats available.");
                 return false;
             }
             seatsArray = this.getExclusiveArray();
             rows = this.getRowsExclusive();
             cols = this.getColsExclusive();
         } else {
-            System.out.println("Exclusive class not available.");
+            //System.out.println("Exclusive class not available.");
             return false;
         }
 

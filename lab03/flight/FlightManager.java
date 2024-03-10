@@ -24,13 +24,16 @@ public class FlightManager {
         String header = sc.nextLine();
         
         if (!isHeaderValid(header)) {
-            System.err.println("Invalid Header!");
+            System.err.println("Cabeçalho inválido!");
             System.exit(1);
         }
 
         Flight flight = addFlightByString(header.substring(1));
         
-        //System.out.println("[FLIGHT] - "+flight);
+        if (flight == null) {
+            sc.close();
+            return;
+        }
 
         // Make the reservations
         while (sc.hasNextLine()) {
@@ -46,8 +49,8 @@ public class FlightManager {
         // Add Flight to the Map
 
         if (!isFlightConfigValid(fConfig)) {
-            System.err.println("Invalid Flight Configuration!");
-            System.exit(1);
+            System.err.println("Configuração de Voo inválida!");
+            return null;
         }
 
         String[] info = fConfig.split(" ");
@@ -86,8 +89,8 @@ public class FlightManager {
     
     public void reserveTicketByString(Flight flight, String rConfig) {
         if (!isReservationValid(rConfig)) {
-            System.err.println("Invalid Reservation!");
-            System.exit(1);
+            System.err.println("Reserva inválida!");
+            return;
         }
         
         String[] info = rConfig.split(" "); // <T|E> <reservations>
@@ -101,13 +104,30 @@ public class FlightManager {
         }
     }
 
+    public void reserveTicketByString(String rConfig) {
+        String[] info = rConfig.split(" "); // flightCode <T|E> <reservations>
+
+        String flightCode = info[0];
+        Flight flight = getFlightByFlightCode(flightCode);
+
+        if (flight == null) {
+            System.err.println("Código de Voo inválido!");
+            return;
+        }
+
+        // Separate the flightCode from the reservation config
+        rConfig = rConfig.substring(flightCode.length()+1);
+
+        reserveTicketByString(flight, rConfig);
+    }
+
     public void cancelReservationByString(String cConfig) {
         if (!isCancellingCodeValid(cConfig)) {
-            System.err.println("Invalid Cancelling code!");
-            System.exit(1);
+            System.err.println("Código de cancelamento inválido!");
+            return;
         }
         
-        String[] info = cConfig.split(" ");
+        String[] info = cConfig.split(":"); // <flightCode>:<reservationID>
 
         String flightCode = info[0];
         Flight flight = MapOfFlights.get(flightCode);
@@ -116,7 +136,19 @@ public class FlightManager {
         
         if(!flight.cancelReservation(reservationID)){
             output("Não foi possível cancelar a reserva: "+cConfig+"\n");
+            return;
         }
+    }
+
+    public void showFlight(String flightCode) {
+        Flight flight = getFlightByFlightCode(flightCode);
+        
+        if (flight == null) {
+            System.err.println("Código de Voo inválido!");
+            return;
+        }
+
+        flight.showMap();
     }
 
     // Private Methods
@@ -177,7 +209,7 @@ public class FlightManager {
     }
 
     // Getters & Setters
-    public Flight getFlight(String flightCode) {
+    private Flight getFlightByFlightCode(String flightCode) {
         return MapOfFlights.get(flightCode);
     }
 }

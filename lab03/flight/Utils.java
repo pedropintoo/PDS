@@ -3,8 +3,6 @@
  * @ Create Time: 2024-03-09
  */
 
-package lab03.flight;
-
 public class Utils {
     public static boolean isAlphaNumeric(String str) {
         return str.matches("[a-zA-Z][a-zA-Z0-9]*");

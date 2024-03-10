@@ -3,9 +3,6 @@
  * @ Create Time: 2024-03-04
  */
 
-package lab03.flight;
-
-
 public class Flight {
 
     private static int counterRID = 0;

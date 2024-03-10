@@ -3,8 +3,6 @@
  * @ Create Time: 2024-03-04
  */
 
-package lab03.flight;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;

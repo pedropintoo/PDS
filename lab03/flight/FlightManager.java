@@ -17,13 +17,20 @@ public class FlightManager implements FlightManagerInterface{
     }
     
     public void addFlightByFilename(String filename) throws FileNotFoundException{
-        Scanner sc = new Scanner(new FileReader(filename));
+        Scanner sc;
+        try {
+            sc = new Scanner(new FileReader(filename));
+        } catch (FileNotFoundException e) {
+            output("Ficheiro não encontrado!\n");
+            return;
+        }
 
         String header = sc.nextLine();
         
         if (!isHeaderValid(header)) {
-            System.err.println("Cabeçalho inválido!");
-            System.exit(1);
+            output("Cabeçalho inválido!\n");
+            sc.close();
+            return;
         }
 
         Flight flight = addFlightByString(header.substring(1));

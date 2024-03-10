@@ -176,11 +176,16 @@ public class Flight implements FlightInterface{
         // Returns a string (e.g. "1A 1B 1C")
         String ret = "";
         int count = 0;
+        String position;
 
         for (int i = 0; i < seatsArray.length; i++) {
             for (int j = 0; j < seatsArray[0].length; j++) {
                 if (seatsArray[i][j] == RID) {
-                    String position = Integer.toString(j+1) + (char)('A' + i);
+                    if (seatsArray == touristicArray && hasExecutive()){
+                        position = Integer.toString(j+1+executiveArray[0].length) + (char)('A' + i);
+                    } else {
+                        position = Integer.toString(j+1) + (char)('A' + i);
+                    }
                     ret = ret + position + " ";
                     count++;
                 }

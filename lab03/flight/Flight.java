@@ -27,30 +27,27 @@ public class Flight {
     // Reserve a ticket (if possible) in the Flight
     public boolean reserveTicket(TicketClass ticketC, int reservations){
         int[][] seatsArray;
-        int rows, cols;
 
-        // Check if there are enough seats available and get the array to reserve the seats
+        // Filter reserve ticket
         if (ticketC == TicketClass.Touristic) {
-            if (reservations > touristicTotalSeats() - touristicOccupiedSeats()) {
-                System.out.println("Not enough seats available.");
+            if (reservations > getTouristicTotalSeats() - getTouristicOccupiedSeats()) {
+                // System.out.println("Not enough seats available.");
                 return false;
             }
             seatsArray = touristicArray;
-            rows = this.getRowsTouristic();
-            cols = this.getColsTouristic();
-        } else if (ticketC == TicketClass.Executive && executiveArray != null) {
-            if (reservations > this.executiveTotalSeats() - this.executiveOccupiedSeats()) {
-                System.out.println("Not enough seats available.");
+        } else if (hasExecutive() && ticketC == TicketClass.Executive) {
+            if (reservations > getExecutiveTotalSeats() - getExecutiveOccupiedSeats()) {
+                // System.out.println("Not enough seats available.");
                 return false;
             }
             seatsArray = executiveArray;
-            rows = this.getRowsExecutive();
-            cols = this.getColsExecutive();
         } else {
-            System.out.println("Executive class not available.");
+            // System.out.println("Executive class not available.");
             return false;
         }
-
+        
+        int rows = seatsArray.length;
+        int cols = seatsArray[0].length;
         int countSuccess = 0;
         // Try to reserve the seats in empty queues
         for (int j = 0; j < cols; j++) {
@@ -89,9 +86,9 @@ public class Flight {
         
         if (success){
             if (ticketC == TicketClass.Touristic){
-                this.setTouristicArray(seatsArray);
+                touristicArray = seatsArray;
             } else {
-                this.setExecutiveArray(seatsArray);
+                executiveArray = seatsArray;
             }
             counterRID++;
         }
@@ -238,12 +235,24 @@ public class Flight {
         return this.executiveArray != null;
     }
 
-    private int executiveTotalSeats(){
+    private int getExecutiveTotalSeats(){
         return executiveArray.length * executiveArray[0].length;
     }
 
-    private int touristicTotalSeats(){
+    private int getTouristicTotalSeats(){
         return touristicArray.length * touristicArray[0].length;
+    }
+
+    private int getOccupiedSeats(int[][] seatsArray) {
+        int occupied = 0;
+        for (int i = 0; i < seatsArray.length; i++) {
+            for (int j = 0; j < seatsArray[0].length; j++) {
+                if (seatsArray[i][j] != 0) {
+                    occupied++;
+                }
+            }
+        }
+        return occupied;
     }
 
     public int getExecutiveOccupiedSeats(){
@@ -254,17 +263,4 @@ public class Flight {
         return getOccupiedSeats(touristicArray);
     }
 
-    private int getOccupiedSeats(int[][] seatsArray) {
-        int occupied = 0;
-
-        for (int i = 0; i < seatsArray.length; i++) {
-            for (int j = 0; j < seatsArray[0].length; j++) {
-                if (seatsArray[i][j] != 0) {
-                    occupied++;
-                }
-            }
-        }
-
-        return occupied;
-    }
 }

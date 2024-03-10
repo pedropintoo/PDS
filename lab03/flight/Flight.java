@@ -117,61 +117,34 @@ public class Flight {
     }
 
     public void showMap() {
-        int[][] executive = this.getExecutiveArray();
-        int[][] turist = this.getTouristicArray();
 
-        if (!this.hasExecutive()) {
-            executive = new int[0][0];
+        int totalCols = touristicArray[0].length + executiveArray[0].length;
+        int totalRows = touristicArray.length;
+
+        if(hasExecutive() && executiveArray.length > totalRows) {
+            totalRows = executiveArray.length;
         }
 
-        int nColumns = 0;
-        int nRows = 0;
-
-        if(this.hasExecutive()) {
-            if(turist.length >= executive.length) {
-                nColumns = executive[0].length + turist[0].length;
-                nRows = turist.length;
-            }
-        } else {
-            nColumns = this.getColsTouristic();
-            nRows = this.getRowsTouristic();
-        }
-
-        // Print the numeration of the columns
-        System.out.print("\t");
-        for(int i = 1; i <= nColumns; i++) {
-            System.out.print(i + "\t");
+        // Columns label
+        System.out.print(" ");
+        for(int i = 1; i <= totalCols; i++) {
+            System.out.printf("%3d",i);
         }
         System.out.println();
 
-        int letra = 65; // ASCII code for 'A'
+        for (int i = 0; i < totalRows; i++) {
+            // Rows label
+            System.out.print((char)('A' + i) + "\t");
 
-        for(int i = 0; i < nRows; i++) {
-            System.out.print((char)letra + "\t");
-            letra++;
-
-            for(int j = 0; j < nColumns; j++) {
-                if(this.hasExecutive() && j < executive[0].length) {
-                    if(i < executive.length) {
-                        if(executive[i][j] == 0)
-                            System.out.print("0\t");
-                        else
-                            System.out.print(executive[i][j] + "\t");
+            for (int j = 0; j < totalCols; j++) {
+                if (hasExecutive()){
+                    if (j < executiveArray[0].length) {
+                        System.out.printf("%3s", i < executiveArray.length ? executiveArray[i][j] : " ");
                     } else {
-                        System.out.print("\t");
+                        System.out.printf("%3s", touristicArray[i][j - executiveArray[0].length]);
                     }
-                } else { 
-                    int x;
-                    if(this.hasExecutive())
-                        x = j - 1;
-                    else
-                        x = j;
-                    
-                    if(turist[i][x - executive.length] == 0)
-                        System.out.print("0");
-                    else
-                        System.out.print(turist[i][x - executive.length]);
-                    System.out.print("\t");
+                } else {
+                    System.out.printf("%3s", touristicArray[i][j]);
                 }
             }
             System.out.println();

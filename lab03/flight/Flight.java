@@ -73,7 +73,7 @@ public class Flight {
         for (int j = 0; j < cols; j++) {
             if (seatsArray[0][j] == 0){
                 for (int i = 0; i < reservations; i++) {
-                    if (j + i/rows < cols && seatsArray[i % rows][j+i/rows] == 0){
+                    if (Utils.isSeatPossible(seatsArray, rows, cols, i, j)){
 
                         seatsArray[i % rows][j+i/rows] = counterRID + 1;
                         countSuccess++;
@@ -82,12 +82,7 @@ public class Flight {
                 break;
             }
         }
-        boolean success;
-        if (countSuccess == reservations){
-            success = true;
-        } else {
-            success = false;
-        }
+        boolean success = countSuccess == reservations;
 
         // If the previous method didn't get completed, try to reserve the seats sequentially
         if (!success){

@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FlightManager {
+public class FlightManager implements FlightManagerInterface{
 
     private HashMap<String, Flight> MapOfFlights;
 
@@ -85,26 +85,6 @@ public class FlightManager {
         return flight;
     }
     
-    public String reserveTicketByString(Flight flight, String rConfig) {
-        if (!isReservationValid(rConfig)) {
-            System.err.println("Reserva inválida!");
-            return null;
-        }
-        
-        String[] info = rConfig.split(" "); // <T|E> <reservations>
-        char classSym = info[0].charAt(0);
-
-        TicketClass ticketC = TicketClass.getTicketClass(classSym);
-        int reservations = Integer.parseInt(info[1]);
-
-        if(!flight.reserveTicket(ticketC, reservations)) {
-            output("Não foi possível obter lugares para a reserva: "+rConfig+"\n");
-            return null;
-        } else {
-            return flight.getLastReserve();
-        }
-    }
-
     public String reserveTicketByString(String rConfig) {
         String[] info = rConfig.split(" "); // flightCode <T|E> <reservations>
 
@@ -153,6 +133,26 @@ public class FlightManager {
     }
 
     // Private Methods
+
+    private String reserveTicketByString(Flight flight, String rConfig) {
+        if (!isReservationValid(rConfig)) {
+            System.err.println("Reserva inválida!");
+            return null;
+        }
+        
+        String[] info = rConfig.split(" "); // <T|E> <reservations>
+        char classSym = info[0].charAt(0);
+
+        TicketClass ticketC = TicketClass.getTicketClass(classSym);
+        int reservations = Integer.parseInt(info[1]);
+
+        if(!flight.reserveTicket(ticketC, reservations)) {
+            output("Não foi possível obter lugares para a reserva: "+rConfig+"\n");
+            return null;
+        } else {
+            return flight.getLastReserve();
+        }
+    }
 
     private void output(String str) {
         // only for clean code

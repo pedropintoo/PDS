@@ -3,7 +3,7 @@
  * @ Create Time: 2024-03-04
  */
 
-public class Flight {
+public class Flight implements FlightInterface{
 
     private int counterRID = 0;
     private String flightCode;
@@ -19,14 +19,14 @@ public class Flight {
         this.flightCode = flightCode;
         this.counterRID = 0;
     }
-
+    
     public Flight(String flightCode, int rowsTouristic, int colsTouristic, int rowsExecutive, int colsExecutive) {
         this(flightCode,rowsTouristic,colsTouristic);
         this.executiveArray = new int[rowsExecutive][colsExecutive];
     }  
 
-    // Reserve a ticket (if possible) in the Flight
     public boolean reserveTicket(TicketClass ticketC, int reservations){
+        // Reserve a ticket (if possible) in the Flight
         int[][] seatsArray;
 
         // Filter seats depending on required ticket
@@ -90,8 +90,8 @@ public class Flight {
         return success;
     }
 
-    // Cancel a reservation (if possible) in the Flight
     public boolean cancelReservation(int RID) {
+        // Cancel a reservation (if possible) in the Flight
         int removed = 0;
 
         for (int i = 0; i < touristicArray.length; i++) {
@@ -155,7 +155,6 @@ public class Flight {
         }
 
     }
-
 
     public String getLastReserve() {
         String ret = getSeatsByRID(touristicArray, counterRID);

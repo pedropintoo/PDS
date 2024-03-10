@@ -12,4 +12,7 @@ public class Utils {
     public static boolean isIntegerXInteger(String str) {
         return str.matches("[1-9][0-9]*x[1-9][0-9]*");
     }
+    public static boolean isSeatPossible(int[][] seatsArray, int rows, int cols, int i, int j){
+        return j + i/rows < cols && seatsArray[i % rows][j+i/rows] == 0;
+    }
 }

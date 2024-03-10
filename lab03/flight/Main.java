@@ -46,7 +46,7 @@ public class Main {
                     break;
                 case 'Q':
                     System.out.println("Programa terminou!");
-                    System.exit(1);
+                    System.exit(0);
                 default:
                     showMenuOptions();
                     break;

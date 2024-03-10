@@ -47,7 +47,7 @@ public class Flight implements FlightInterface{
         for (int j = 0; j < cols; j++) {
             if (seatsArray[0][j] == 0){
                 for (int i = 0; i < reservations; i++) {
-                    if (j + i/rows < cols){
+                    if (Utils.isSeatPossible(seatsArray, rows, cols, i, j)){
                         seatsArray[i % rows][j+i/rows] = counterRID + 1;
                         countSuccess++;
                     }

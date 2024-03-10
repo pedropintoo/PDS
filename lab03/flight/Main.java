@@ -17,8 +17,8 @@ public class Main {
             sc = new Scanner(new FileReader(args[0]));
         }
         showMenuOptions();
+        System.out.println("\nEscolha uma opção: (H para ajuda)");
         while (sc.hasNextLine()) {
-            System.out.println("\nEscolha uma opção: (H para ajuda)");
             char option = sc.next().trim().charAt(0);
             switch (option) {
                 case 'I':
@@ -51,6 +51,7 @@ public class Main {
                     showMenuOptions();
                     break;
             }
+            System.out.println("\nEscolha uma opção: (H para ajuda)");
         }
         sc.close();
     }

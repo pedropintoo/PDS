@@ -118,11 +118,14 @@ public class Flight {
 
     public void showMap() {
 
-        int totalCols = touristicArray[0].length + executiveArray[0].length;
+        int totalCols = touristicArray[0].length;
         int totalRows = touristicArray.length;
 
-        if(hasExecutive() && executiveArray.length > totalRows) {
-            totalRows = executiveArray.length;
+        if(hasExecutive()) {
+            totalCols += executiveArray[0].length;
+            if (executiveArray.length > totalRows) {
+                totalRows = executiveArray.length;
+            }
         }
 
         // Columns label
@@ -141,7 +144,7 @@ public class Flight {
                     if (j < executiveArray[0].length) {
                         System.out.printf("%3s", i < executiveArray.length ? executiveArray[i][j] : " ");
                     } else {
-                        System.out.printf("%3s", touristicArray[i][j - executiveArray[0].length]);
+                        System.out.printf("%3s", i < touristicArray.length ? touristicArray[i][j - executiveArray[0].length] : " ");
                     }
                 } else {
                     System.out.printf("%3s", touristicArray[i][j]);
@@ -196,11 +199,12 @@ public class Flight {
     }
 
     private boolean hasTouristicSpace(int reservations) {
-        return reservations > getTouristicTotalSeats() - getTouristicOccupiedSeats();
+        System.out.println(getTouristicTotalSeats() - getTouristicOccupiedSeats());
+        return reservations <= getTouristicTotalSeats() - getTouristicOccupiedSeats();
     }
 
     private boolean hasExecutiveSpace(int reservations) {
-        return reservations > getExecutiveTotalSeats() - getExecutiveOccupiedSeats();
+        return reservations <= getExecutiveTotalSeats() - getExecutiveOccupiedSeats();
     }
 
     private int getOccupiedSeats(int[][] seatsArray) {

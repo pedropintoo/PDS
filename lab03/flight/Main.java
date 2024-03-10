@@ -33,8 +33,10 @@ public class Main {
                     break;
                 case 'R':
                     String rConfig = sc.nextLine().trim();
-                    fm.reserveTicketByString(rConfig);
-                    // Output! getLastReservation
+                    String ret = fm.reserveTicketByString(rConfig);
+                    if (ret != null) {
+                        System.out.println(ret);
+                    }
                     break;
                 case 'C':
                     String cConfig = sc.nextLine().trim();

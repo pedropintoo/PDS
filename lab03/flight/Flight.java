@@ -265,6 +265,41 @@ public class Flight {
         return this.rowsTouristic * this.colsTouristic;
     }
 
+    public String getLastReserve() {
+        int rows = this.getRowsTouristic();
+        int cols = this.getColsTouristic();
+        int [][] touristicArray = this.getTouristicArray();
+
+        int lastRID = counterRID;
+        String ret = "";
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (touristicArray[i][j] == lastRID) {
+                    String position = Integer.toString(j+1) + (char)('A' + i);
+                    ret = ret + position + " ";
+                }
+            }
+        }
+
+        if (this.hasExclusive()){
+            rows = this.getRowsExclusive();
+            cols = this.getColsExclusive();
+            int [][] exclusiveArray = this.getExclusiveArray();
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    if (exclusiveArray[i][j] == lastRID) {
+                        String position = Integer.toString(j+1) + (char)('A' + i);
+                        ret = ret + position + " ";
+                    }
+                }
+            }
+        }
+
+        return ret == "" ? null : flightCode + ":" + lastRID + " = " + String.join(" | ", ret.trim().split(" "));
+    }
+
     public int exclusiveOccupiedSeats(){
         int rows = this.getRowsExclusive();
         int cols = this.getColsExclusive();

@@ -87,10 +87,10 @@ public class FlightManager {
         return flight;
     }
     
-    public void reserveTicketByString(Flight flight, String rConfig) {
+    public String reserveTicketByString(Flight flight, String rConfig) {
         if (!isReservationValid(rConfig)) {
             System.err.println("Reserva inválida!");
-            return;
+            return null;
         }
         
         String[] info = rConfig.split(" "); // <T|E> <reservations>
@@ -101,10 +101,13 @@ public class FlightManager {
 
         if(!flight.reserveTicket(ticketC, reservations)) {
             output("Não foi possível obter lugares para a reserva: "+rConfig+"\n");
+            return null;
+        } else {
+            return flight.getLastReserve();
         }
     }
 
-    public void reserveTicketByString(String rConfig) {
+    public String reserveTicketByString(String rConfig) {
         String[] info = rConfig.split(" "); // flightCode <T|E> <reservations>
 
         String flightCode = info[0];
@@ -112,13 +115,13 @@ public class FlightManager {
 
         if (flight == null) {
             System.err.println("Código de Voo inválido!");
-            return;
+            return null;
         }
 
         // Separate the flightCode from the reservation config
         rConfig = rConfig.substring(flightCode.length()+1);
 
-        reserveTicketByString(flight, rConfig);
+        return reserveTicketByString(flight, rConfig);
     }
 
     public void cancelReservationByString(String cConfig) {

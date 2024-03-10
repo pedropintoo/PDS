@@ -16,10 +16,10 @@ public class Flight {
     private int rowsTouristic;
     private int colsTouristic;
 
-    // Exclusive seats (OPTIONAL)
-    private int[][] exclusiveArray = null;
-    private int rowsExclusive = 0;
-    private int colsExclusive = 0;
+    // Executive seats (OPTIONAL)
+    private int[][] executiveArray = null;
+    private int rowsExecutive = 0;
+    private int colsExecutive = 0;
 
     public Flight(String flightCode, int rowsTouristic, int colsTouristic) {
         this.touristicArray = new int[rowsTouristic][colsTouristic];
@@ -28,17 +28,17 @@ public class Flight {
         this.colsTouristic = colsTouristic;
     }
 
-    public Flight(String flightCode, int rowsTouristic, int colsTouristic, int rowsExclusive, int colsExclusive) {
+    public Flight(String flightCode, int rowsTouristic, int colsTouristic, int rowsExecutive, int colsExecutive) {
         this(flightCode,rowsTouristic,colsTouristic);
-        this.exclusiveArray = new int[rowsExclusive][colsExclusive];
-        this.rowsExclusive = rowsExclusive;
-        this.colsExclusive = colsExclusive;
+        this.executiveArray = new int[rowsExecutive][colsExecutive];
+        this.rowsExecutive = rowsExecutive;
+        this.colsExecutive = colsExecutive;
     }  
 
     @Override
     public String toString() {
         return "Flight [flightCode=" + flightCode + ", rowsTouristic=" + rowsTouristic + ", colsTouristic="
-                + colsTouristic + ", rowsExclusive=" + rowsExclusive + ", colsExclusive=" + colsExclusive + "]";
+                + colsTouristic + ", rowsExecutive=" + rowsExecutive + ", colsExecutive=" + colsExecutive + "]";
     }
 
     // Reserve a ticket (if possible) in the Flight
@@ -49,22 +49,22 @@ public class Flight {
         // Check if there are enough seats available and get the array to reserve the seats
         if (ticketC == TicketClass.Touristic) {
             if (reservations > this.touristicTotalSeats() - this.touristicOccupiedSeats()) {
-                //System.out.println("Not enough seats available.");
+                System.out.println("Not enough seats available.");
                 return false;
             }
             seatsArray = this.getTouristicArray();
             rows = this.getRowsTouristic();
             cols = this.getColsTouristic();
-        } else if (ticketC == TicketClass.Exclusive && exclusiveArray != null) {
-            if (reservations > this.exclusiveTotalSeats() - this.exclusiveOccupiedSeats()) {
-                //System.out.println("Not enough seats available.");
+        } else if (ticketC == TicketClass.Executive && executiveArray != null) {
+            if (reservations > this.executiveTotalSeats() - this.executiveOccupiedSeats()) {
+                System.out.println("Not enough seats available.");
                 return false;
             }
-            seatsArray = this.getExclusiveArray();
-            rows = this.getRowsExclusive();
-            cols = this.getColsExclusive();
+            seatsArray = this.getExecutiveArray();
+            rows = this.getRowsExecutive();
+            cols = this.getColsExecutive();
         } else {
-            //System.out.println("Exclusive class not available.");
+            System.out.println("Executive class not available.");
             return false;
         }
 
@@ -73,8 +73,7 @@ public class Flight {
         for (int j = 0; j < cols; j++) {
             if (seatsArray[0][j] == 0){
                 for (int i = 0; i < reservations; i++) {
-                    if (Utils.isSeatPossible(seatsArray, rows, cols, i, j)){
-
+                    if (j + i/rows < cols){
                         seatsArray[i % rows][j+i/rows] = counterRID + 1;
                         countSuccess++;
                     }
@@ -82,7 +81,12 @@ public class Flight {
                 break;
             }
         }
-        boolean success = countSuccess == reservations;
+        boolean success;
+        if (countSuccess == reservations){
+            success = true;
+        } else {
+            success = false;
+        }
 
         // If the previous method didn't get completed, try to reserve the seats sequentially
         if (!success){
@@ -104,7 +108,7 @@ public class Flight {
             if (ticketC == TicketClass.Touristic){
                 this.setTouristicArray(seatsArray);
             } else {
-                this.setExclusiveArray(seatsArray);
+                this.setExecutiveArray(seatsArray);
             }
             counterRID++;
         }
@@ -128,15 +132,15 @@ public class Flight {
             }
         }
 
-        if (this.hasExclusive()){
-            rows = this.getRowsExclusive();
-            cols = this.getColsExclusive();
-            int [][] exclusiveArray = this.getExclusiveArray();
+        if (this.hasExecutive()){
+            rows = this.getRowsExecutive();
+            cols = this.getColsExecutive();
+            int [][] executiveArray = this.getExecutiveArray();
 
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
-                    if (exclusiveArray[i][j] == RID) {
-                        exclusiveArray[i][j] = 0;
+                    if (executiveArray[i][j] == RID) {
+                        executiveArray[i][j] = 0;
                         removed++;
                     }
                 }
@@ -147,17 +151,17 @@ public class Flight {
     }
 
     public void showMap() {
-        int[][] executive = this.getExclusiveArray();
+        int[][] executive = this.getExecutiveArray();
         int[][] turist = this.getTouristicArray();
 
-        if (!this.hasExclusive()) {
+        if (!this.hasExecutive()) {
             executive = new int[0][0];
         }
 
         int nColumns = 0;
         int nRows = 0;
 
-        if(this.hasExclusive()) {
+        if(this.hasExecutive()) {
             if(turist.length >= executive.length) {
                 nColumns = executive[0].length + turist[0].length;
                 nRows = turist.length;
@@ -181,7 +185,7 @@ public class Flight {
             letra++;
 
             for(int j = 0; j < nColumns; j++) {
-                if(this.hasExclusive() && j < executive[0].length) {
+                if(this.hasExecutive() && j < executive[0].length) {
                     if(i < executive.length) {
                         if(executive[i][j] == 0)
                             System.out.print("0\t");
@@ -192,7 +196,7 @@ public class Flight {
                     }
                 } else { 
                     int x;
-                    if(this.hasExclusive())
+                    if(this.hasExecutive())
                         x = j - 1;
                     else
                         x = j;
@@ -211,8 +215,8 @@ public class Flight {
 
 
 
-    private boolean hasExclusive(){
-        return this.exclusiveArray != null;
+    private boolean hasExecutive(){
+        return this.executiveArray != null;
     }
 
     //Getters & Setters
@@ -225,12 +229,12 @@ public class Flight {
         this.touristicArray = touristicArray;
     }
 
-    public int[][] getExclusiveArray(){
-        return this.exclusiveArray;
+    public int[][] getExecutiveArray(){
+        return this.executiveArray;
     }
 
-    public void setExclusiveArray(int[][] exclusiveArray){
-        this.exclusiveArray = exclusiveArray;
+    public void setExecutiveArray(int[][] executiveArray){
+        this.executiveArray = executiveArray;
     }
 
     public String getFlightCode(){
@@ -245,16 +249,16 @@ public class Flight {
         return this.colsTouristic;
     }
 
-    public int getRowsExclusive(){
-        return this.rowsExclusive;
+    public int getRowsExecutive(){
+        return this.rowsExecutive;
     }
 
-    public int getColsExclusive(){
-        return this.colsExclusive;
+    public int getColsExecutive(){
+        return this.colsExecutive;
     }
 
-    public int exclusiveTotalSeats(){
-        return this.rowsExclusive * this.colsExclusive;
+    public int executiveTotalSeats(){
+        return this.rowsExecutive * this.colsExecutive;
     }
 
     public int touristicTotalSeats(){
@@ -278,14 +282,14 @@ public class Flight {
             }
         }
 
-        if (this.hasExclusive()){
-            rows = this.getRowsExclusive();
-            cols = this.getColsExclusive();
-            int [][] exclusiveArray = this.getExclusiveArray();
+        if (this.hasExecutive()){
+            rows = this.getRowsExecutive();
+            cols = this.getColsExecutive();
+            int [][] executiveArray = this.getExecutiveArray();
 
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < cols; j++) {
-                    if (exclusiveArray[i][j] == lastRID) {
+                    if (executiveArray[i][j] == lastRID) {
                         String position = Integer.toString(j+1) + (char)('A' + i);
                         ret = ret + position + " ";
                     }
@@ -296,15 +300,15 @@ public class Flight {
         return ret == "" ? null : flightCode + ":" + lastRID + " = " + String.join(" | ", ret.trim().split(" "));
     }
 
-    public int exclusiveOccupiedSeats(){
-        int rows = this.getRowsExclusive();
-        int cols = this.getColsExclusive();
-        int [][] exclusiveArray = this.getExclusiveArray();
+    public int executiveOccupiedSeats(){
+        int rows = this.getRowsExecutive();
+        int cols = this.getColsExecutive();
+        int [][] executiveArray = this.getExecutiveArray();
         int occupied = 0;
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (exclusiveArray[i][j] != 0) {
+                if (executiveArray[i][j] != 0) {
                     occupied++;
                 }
             }

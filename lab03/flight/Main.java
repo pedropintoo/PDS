@@ -4,16 +4,20 @@
  */
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 public class Main {
 
-    private final static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws FileNotFoundException {
         FlightManager fm = new FlightManager();
+        if (args.length > 0) {
+            sc = new Scanner(new FileReader(args[0]));
+        }
         showMenuOptions();
-        while (true) {
+        while (sc.hasNextLine()) {
             System.out.println("\nEscolha uma opção: (H para ajuda)");
             char option = sc.next().trim().charAt(0);
             switch (option) {
@@ -48,6 +52,7 @@ public class Main {
                     break;
             }
         }
+        sc.close();
     }
 
     private static void showMenuOptions() {
@@ -58,5 +63,6 @@ public class Main {
         System.out.println("[F] <flightCode> [seats_executive] <seats_touristic> - acrescenta um novo voo");
         System.out.println("[R] <flightCode> <T|E> <number_seats> - acrescenta uma nova reserva a um voo");
         System.out.println("[C] <flightCode>:<reservationID> - cancela uma reserva");
+        System.out.println("[Q] - termina o programa");
     }
 }

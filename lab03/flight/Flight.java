@@ -40,53 +40,76 @@ public class Flight implements FlightInterface{
             return false;
         }
         
-        int rows = seatsArray.length;
         int cols = seatsArray[0].length;
         int countSuccess = 0;
-        // Try to reserve the seats in empty queues
+
+        // Try to reserve the seats in empty columns
         for (int j = 0; j < cols; j++) {
-            if (seatsArray[0][j] == 0){
-                for (int i = 0; i < reservations; i++) {
-                    if (j + i/rows < cols){
-                        seatsArray[i % rows][j+i/rows] = counterRID + 1;
-                        countSuccess++;
-                    }
-                }
+
+            // First try to find an empty column to reserve the seats
+            if (isColumnEmpty(seatsArray, j)){
+                countSuccess = reserveSeatsInColumn(j, seatsArray, reservations);
                 break;
             }
         }
-        boolean success;
-        if (countSuccess == reservations){
-            success = true;
-        } else {
-            success = false;
-        }
+        boolean success = countSuccess == reservations;
 
-        // If the previous method didn't get completed, try to reserve the seats sequentially
+        // If the previous method didn't get all the reservations, try to reserve the seats sequentially
         if (!success){
-            for (int j = 0; j < cols && !success; j++) {
-                for (int i = 0; i < rows && !success; i++) {
-                    if (seatsArray[i][j] == 0){
-                        seatsArray[i][j] = counterRID + 1;
-                        countSuccess++;
-
-                        if (countSuccess == reservations){
-                            success = true;
-                        }
-                    }
-                }
-            }
+            success = reserveSeatsSequentially(seatsArray, reservations, countSuccess);
         }
         
         if (success){
             if (ticketC == TicketClass.Touristic){
-                touristicArray = seatsArray;
+                this.touristicArray = seatsArray;
             } else {
-                executiveArray = seatsArray;
+                this.executiveArray = seatsArray;
             }
             counterRID++;
         }
 
+        return success;
+    }
+
+    private boolean isColumnEmpty(int[][] seatsArray, int targetColumn){
+        int rows = seatsArray.length;
+        for (int i = 0; i < rows; i++) {
+            if (seatsArray[i][targetColumn] != 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int reserveSeatsInColumn(int targetColumn, int[][] seatsArray, int reservations){
+        int count = 0;
+        int rows = seatsArray.length;
+        int cols = seatsArray[0].length;
+        for (int i = 0; i < reservations; i++) {
+            if (Utils.isSeatPossible(seatsArray, rows, cols, i, targetColumn)){
+                seatsArray[i % rows][targetColumn+i/rows] = counterRID + 1;
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private boolean reserveSeatsSequentially(int[][] seatsArray, int reservations, int countSuccess){
+        boolean success = false;
+        int rows = seatsArray.length;
+        int cols = seatsArray[0].length;
+        for (int j = 0; j < cols && !success; j++) {
+            for (int i = 0; i < rows && !success; i++) {
+                if (seatsArray[i][j] == 0){
+                    seatsArray[i][j] = this.counterRID + 1;
+                    countSuccess++;
+
+                    if (countSuccess == reservations){
+                        success = true;
+                    }
+                }
+            }
+        }
         return success;
     }
 

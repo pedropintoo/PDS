@@ -5,7 +5,7 @@
 
 public class Flight {
 
-    private static int counterRID = 0;
+    private int counterRID = 0;
     private String flightCode;
 
     // Touristic seats
@@ -17,6 +17,7 @@ public class Flight {
     public Flight(String flightCode, int rowsTouristic, int colsTouristic) {
         this.touristicArray = new int[rowsTouristic][colsTouristic];
         this.flightCode = flightCode;
+        this.counterRID = 0;
     }
 
     public Flight(String flightCode, int rowsTouristic, int colsTouristic, int rowsExecutive, int colsExecutive) {
@@ -199,7 +200,6 @@ public class Flight {
     }
 
     private boolean hasTouristicSpace(int reservations) {
-        System.out.println(getTouristicTotalSeats() - getTouristicOccupiedSeats());
         return reservations <= getTouristicTotalSeats() - getTouristicOccupiedSeats();
     }
 

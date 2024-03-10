@@ -181,44 +181,37 @@ public class Flight {
 
 
     public String getLastReserve() {
-        int rows = this.getRowsTouristic();
-        int cols = this.getColsTouristic();
-        int [][] touristicArray = this.getTouristicArray();
+        String ret = getSeatsPosition(touristicArray, counterRID);
 
-        int lastRID = counterRID;
-        String ret = "";
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (touristicArray[i][j] == lastRID) {
-                    String position = Integer.toString(j+1) + (char)('A' + i);
-                    ret = ret + position + " ";
-                }
-            }
+        if (ret == null && hasExecutive()){
+            ret = getSeatsPosition(executiveArray, counterRID);
         }
 
-        if (this.hasExecutive()){
-            rows = this.getRowsExecutive();
-            cols = this.getColsExecutive();
-            int [][] executiveArray = this.getExecutiveArray();
-
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
-                    if (executiveArray[i][j] == lastRID) {
-                        String position = Integer.toString(j+1) + (char)('A' + i);
-                        ret = ret + position + " ";
-                    }
-                }
-            }
-        }
-
-        return ret == "" ? null : flightCode + ":" + lastRID + " = " + String.join(" | ", ret.trim().split(" "));
+        return ret == null ? null : flightCode + ":" + counterRID + " = " + String.join(" | ", ret.trim().split(" "));
     }
 
     //Getters & Setters
     
     private boolean hasExecutive(){
         return this.executiveArray != null;
+    }
+
+    private String getSeatsPosition(int[][] seatsArray, int RID){
+        // Returns a string (e.g. "1A 1B 1C")
+        String ret = "";
+        int count = 0;
+
+        for (int i = 0; i < seatsArray.length; i++) {
+            for (int j = 0; j < seatsArray[0].length; j++) {
+                if (seatsArray[i][j] == RID) {
+                    String position = Integer.toString(j+1) + (char)('A' + i);
+                    ret = ret + position + " ";
+                    count++;
+                }
+            }
+        }
+
+        return count > 0 ? ret : null;
     }
 
     private int getExecutiveTotalSeats(){
@@ -249,11 +242,11 @@ public class Flight {
         return occupied;
     }
 
-    public int getExecutiveOccupiedSeats(){
+    private int getExecutiveOccupiedSeats(){
         return getOccupiedSeats(executiveArray);
     }
 
-    public int getTouristicOccupiedSeats(){
+    private int getTouristicOccupiedSeats(){
         return getOccupiedSeats(touristicArray);
     }
 

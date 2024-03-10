@@ -73,7 +73,8 @@ public class Flight {
         for (int j = 0; j < cols; j++) {
             if (seatsArray[0][j] == 0){
                 for (int i = 0; i < reservations; i++) {
-                    if (j + i/rows < cols){
+                    if (j + i/rows < cols && seatsArray[i % rows][j+i/rows] == 0){
+
                         seatsArray[i % rows][j+i/rows] = counterRID + 1;
                         countSuccess++;
                     }

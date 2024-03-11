@@ -20,29 +20,26 @@ public class Main {
         System.out.println("\nEscolha uma opção: (H para ajuda)");
         while (sc.hasNextLine()) {
             char option = sc.next().trim().charAt(0);
+            String config = sc.nextLine().trim();
+            String ret;
             switch (option) {
                 case 'I':
-                    String filename = sc.nextLine().trim();
-                    fm.addFlightByFilename(filename);
+                    fm.addFlightByFilename(config);
                     break;
                 case 'M':
-                    String flightCode = sc.nextLine().trim();
-                    fm.showFlight(flightCode);
+                    fm.showFlight(config);
                     break;
                 case 'F':
-                    String fConfig = sc.nextLine().trim();
-                    fm.addFlightByString(fConfig);
+                    fm.addFlightByString(config);
                     break;
                 case 'R':
-                    String rConfig = sc.nextLine().trim();
-                    String ret = fm.reserveTicketByString(rConfig);
+                    ret = fm.reserveTicketByString(config);
                     if (ret != null) {
                         System.out.println(ret);
                     }
                     break;
                 case 'C':
-                    String cConfig = sc.nextLine().trim();
-                    fm.cancelReservationByString(cConfig);
+                    fm.cancelReservationByString(config);
                     break;
                 case 'Q':
                     System.out.println("Programa terminou!");

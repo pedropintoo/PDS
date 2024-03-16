@@ -21,7 +21,7 @@ public class Flight {
 
     public Plane getPlane() {
         return plane;
-    }
+    } 
 
     public int getNumTourSeats() {
         return numTourSeats;

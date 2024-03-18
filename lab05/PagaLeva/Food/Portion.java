@@ -1,4 +1,7 @@
-package PagaLeva;
+package PagaLeva.Food;
+
+import PagaLeva.State;
+import PagaLeva.Temperature;
 
 public interface Portion { 
     public Temperature getTemperature(); 

@@ -2,6 +2,7 @@ package AluguerAuto;
 
 import AluguerAuto.Pesado.*;
 import AluguerAuto.Ligeiro.*;
+import AluguerAuto.Motociclo.*;
 
 public class VehicleFactory{
     public static VeiculosMotorizados createMotociclo(String matricula, String marca, String modelo, int potencia, TipoMotociclo tipo){
@@ -29,6 +30,6 @@ public class VehicleFactory{
     }
 
     public static VeiculosMotorizados createPesadoPassageiros(String matricula, String marca, String modelo, int potencia, int numeroQuadro, double peso, int numeroMaxPassageiros){
-        return new Pesado
+        return new Pesado(matricula, marca, modelo, potencia, numeroQuadro, peso);
     }
 }

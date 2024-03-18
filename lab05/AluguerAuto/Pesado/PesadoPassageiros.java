@@ -1,4 +1,4 @@
-package AluguerAuto.Pesado;
+package z.Pesado;
 
 
 public class PesadoPassageiros extends Pesado {

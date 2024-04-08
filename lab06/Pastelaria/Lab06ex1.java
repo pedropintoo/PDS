@@ -1,5 +1,7 @@
- // to complete
- public class Lab06ex1 {
+package Pastelaria;
+
+// to complete
+public class Lab06ex1 {
     public static void main(String[] args) {
         CakeMaster cakeMaster = new CakeMaster();
 

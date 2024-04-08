@@ -1,4 +1,7 @@
- // to complete
+package Filme;
+// to complete
+
+import java.util.List;
 
 public class Movie {
    private String title;
@@ -14,10 +17,22 @@ public class Movie {
    private boolean isNetflix;
    private boolean isIndependent;
 
-   public Movie(){
+   public Movie(){}
+
+   
+
+   // Setters
+
+   @Override
+   public String toString() {
+      return "Movie [title=" + title + ", year=" + year + ", director=" + director + ", writer=" + writer + ", series="
+               + series + ", cast=" + cast + ", locations=" + locations + ", languages=" + languages + ", genres=" + genres
+               + ", isTelevision=" + isTelevision + ", isNetflix=" + isNetflix + ", isIndependent=" + isIndependent + "]";
    }
 
-   public void setTitle(String title) {
+
+
+public void setTitle(String title) {
       this.title = title;
    }
 
@@ -64,6 +79,5 @@ public class Movie {
    public void setIndependent(boolean isIndependent) {
       this.isIndependent = isIndependent;
    }
-1\
    
 }

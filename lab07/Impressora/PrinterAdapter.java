@@ -1,5 +1,4 @@
-import Impressora.AdvancedPrinterInterface;
-
+package Impressora;
 public class PrinterAdapter implements AdvancedPrinterInterface {
     
 }

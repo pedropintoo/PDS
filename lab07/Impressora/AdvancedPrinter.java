@@ -38,10 +38,18 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
 
         public int newPrintJob(Document doc) {
            // TODO: adiciona 'print job' à fila de impressão
+            printQueue.add(new PrintJob(doc));
         }
 
         public boolean cancelJob(int job) {
            // TODO: cancela 'print job', se existir na fila
+            for (PrintJob printJob : printQueue) {
+                if (printJob.getJobId() == job) {
+                    printQueue.remove(printJob);
+                    return true;
+                }
+            }
+            return false;
         }
     
         void shutdownAndAwaitTermination() {
@@ -77,6 +85,30 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
     }
 
     // TODO: implementar métodos
+    // Métodos provisórios
+    public int print(Document doc) {
+        return spool.newPrintJob(doc);
+    }
 
+    public List<Integer> print(List<Document> docs) {
+        List<Integer> jobs = new ArrayList<>();
+        for (Document doc : docs) {
+            jobs.add(spool.newPrintJob(doc));
+        }
+        return jobs;
+    }
 
+    public void showQueuedJobs() {
+        for (PrintJob printJob : spool.getPrintQueue()) {
+            System.out.println(printJob);
+        }
+    }
+
+    public boolean cancelJob(int jobId) {
+        return spool.cancelJob(jobId);
+    }
+
+    public void cancelAll() {
+        spool.getPrintQueue().clear();
+    }
 }

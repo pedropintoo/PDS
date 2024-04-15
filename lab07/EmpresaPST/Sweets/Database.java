@@ -19,10 +19,9 @@ public class Database { // Data elements
     }
 
     public void deleteEmployee(long emp_num) {
-        for (int i = 0; i < employees.size(); i++){
-            if (employees.get(i).getEmpNum() == emp_num){
-                employees.remove(i);
-                break;
+        for (Employee employee : employees) {
+            if (employee.getEmpNum() == emp_num){
+                employees.remove(employee);
             }
         }
     }

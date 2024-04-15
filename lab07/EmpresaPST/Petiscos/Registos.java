@@ -11,13 +11,10 @@ public class Registos {
     }
 
     public void insere(Empregado emp) {
-        // Code to insert employee
-        return;
+        empregados.add(emp);
     }
 
     public void remove(int codigo) {
-        // Code to remove employee
-        return;
     }
 
     public boolean isEmpregado(int codigo) {

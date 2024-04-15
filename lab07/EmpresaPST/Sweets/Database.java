@@ -10,17 +10,28 @@ public class Database { // Data elements
     }
 
     public boolean addEmployee(Employee employee) {
-        // Code to add employee
+        try {
+            employees.add(employee);
+        } catch (Exception e) {
+            return false;
+        }
         return true;
     }
 
     public void deleteEmployee(long emp_num) {
-        // Code to delete employee
-        return;
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getEmpNum() == emp_num) {
+                employees.remove(i);
+                break;
+            }
+        }
     }
 
     public Employee[] getAllEmployees() {
-        // Code to retrieve collection
-        return null;
+        Employee[] employeesArray = new Employee[employees.size()];
+        for (int i = 0; i < employees.size(); i++){
+            employeesArray[i] = employees.get(i);
+        }
+        return employeesArray;
     }
 }

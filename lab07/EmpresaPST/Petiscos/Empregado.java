@@ -29,4 +29,9 @@ public class Empregado {
     public double salario() {
         return salario;
     }
+
+    @Override
+    public String toString() {
+        return "Empregado [nome=" + nome + ", apelido=" + apelido + ", codigo=" + codigo + ", salario=" + salario + "]";
     }
+}

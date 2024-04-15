@@ -1,3 +1,4 @@
+package Impressora;
 import java.util.List;
 
 public interface AdvancedPrinterInterface {

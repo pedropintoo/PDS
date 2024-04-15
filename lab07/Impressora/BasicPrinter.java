@@ -1,3 +1,4 @@
+package Impressora;
 public class BasicPrinter {
     
     private int inkAmount; 

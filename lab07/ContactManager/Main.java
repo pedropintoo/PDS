@@ -26,7 +26,11 @@ public class Main {
         
         cm.saveAndClose();
 
+        cm.saveAndClose(bin);
+
         cm.saveAndClose(cvs);
+
+        cm.openAndLoad(bin);
 
         System.out.println(cm.getByName("Pedro"));
         

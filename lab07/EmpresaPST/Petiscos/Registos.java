@@ -15,14 +15,22 @@ public class Registos {
     }
 
     public void remove(int codigo) {
+        for (Empregado empregado : empregados) {
+            if (empregado.codigo() == codigo){
+                empregados.remove(empregado);
+            }
+        }
     }
 
     public boolean isEmpregado(int codigo) {
-        // Code to find employee
-        return true;
+        for (Empregado empregado : empregados) {
+            if (empregado.codigo() == codigo){
+                return true;
+            }
+        }
+        return false;
     }
     public List<Empregado> listaDeEmpregados() {
-        // Code to retrieve collection
-        return null;
+        return empregados;
     }
 }

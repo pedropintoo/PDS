@@ -18,6 +18,7 @@ public class Registos {
         for (Empregado empregado : empregados) {
             if (empregado.codigo() == codigo){
                 empregados.remove(empregado);
+                break;
             }
         }
     }

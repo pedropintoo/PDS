@@ -23,4 +23,9 @@ public class Employee {
     public double getSalary() {
         return salary;
     }
+
+    @Override
+    public String toString() {
+        return "Employee [name=" + name + ", emp_num=" + emp_num + ", salary=" + salary + "]";
+    }
 }

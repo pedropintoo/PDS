@@ -42,8 +42,10 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
         }
 
         public int newPrintJob(Document doc) {
-           // TODO: adiciona 'print job' à fila de impressão
-            printQueue.add(new PrintJob(doc));
+            // TODO: adiciona 'print job' à fila de impressão
+            PrintJob job = new PrintJob(doc);
+            printQueue.add(job);
+            return job.getJobId();    
         }
 
         public boolean cancelJob(int job) {

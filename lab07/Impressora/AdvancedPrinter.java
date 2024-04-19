@@ -94,10 +94,12 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
     // TODO: implementar métodos
     // Métodos provisórios
     public int print(Document doc) {
+        System.out.println("Spooling 1 document.");
         return spool.newPrintJob(doc);
     }
 
     public List<Integer> print(List<Document> docs) {
+        System.out.printf("Spooling %d document.\n", docs.size());
         List<Integer> jobs = new ArrayList<>();
         for (Document doc : docs) {
             jobs.add(spool.newPrintJob(doc));
@@ -106,13 +108,23 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
     }
 
     public void showQueuedJobs() {
+        if (spool.getPrintQueue().isEmpty()) {
+            System.out.println("No jobs spooled.");
+            return;
+        }
+        System.out.println("Spooled jobs:");
         for (PrintJob printJob : spool.getPrintQueue()) {
-            System.out.println(printJob);
+            System.out.println("\t * " + printJob);
         }
     }
 
     public boolean cancelJob(int jobId) {
-        return spool.cancelJob(jobId);
+        PrintJob job = spool.getPrintQueue().stream().filter(j -> j.getJobId() == jobId).findFirst().orElse(null);
+        boolean returnVal = spool.cancelJob(jobId);
+        if (returnVal) {
+            System.out.println("Cancelled " + job);
+        } 
+        return returnVal;
     }
 
     public void cancelAll() {

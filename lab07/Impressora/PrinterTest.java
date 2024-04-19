@@ -26,21 +26,20 @@ public class PrinterTest {
         docs.add(new Document("text3.txt"));
 
         p.print(docs.get(0));   // print first document only
-        pause(2000);            // wait for a while
+        pause(4000);            // wait for a while
 
         p.print(docs);
         p.showQueuedJobs();
-        pause(4000);            // wait for a while
+        pause(6000);            // wait for a while
 
         p.print(docs);
         p.cancelJob(6);
         p.showQueuedJobs();
-        pause(4000);            // wait for a while
+        pause(6000);            // wait for a while
 
         p.print(docs);
         p.cancelAll();
         p.showQueuedJobs();
-
-        pause(2000);            // wait for a while
+        pause(4000);            // wait for a while
     }
 }

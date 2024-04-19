@@ -1,45 +1,70 @@
-package Impressora;
+// package Impressora;
 
-public class BasicPrinterAdapter extends AdvancedPrinter {
+// import java.util.ArrayList;
+// import java.util.List;
 
-    private BasicPrinter basicPrinter;
+// public class BasicPrinterAdapter extends AdvancedPrinter {
 
-    public BasicPrinterAdapter(BasicPrinter basicPrinter) {
-        super();
-        this.basicPrinter = basicPrinter;
-    }
+//     private BasicPrinter basicPrinter;
+//     private PrinterService spool;
 
-    // TODO: implementar métodos
-    public int print(Document doc) {
-        PrintJob job = new PrintJob(doc);
-        String[] content = doc.getContent();
+//     public BasicPrinterAdapter(BasicPrinter basicPrinter) {
+//         super();
+//         this.spool = new PrinterService();
+//         new Thread(this.spool).start();
+//         this.basicPrinter = basicPrinter;
+//     }
 
-        basicPrinter.print(content)
+//     private void addQueue(PrintJob job) {
+//         printQueue.add(job);
+//         if (basicPrinter.print(content) == false) {
+//             basicPrinter.refill();
+//             basicPrinter.print(content);
+//         }
+//         printQueue.remove(job);
+//     }
 
+//     // TODO: implementar métodos
+//     @Override
+//     public int print(Document doc) {
+//         PrintJob job = new PrintJob(doc);
+//         String[] content = job.getContent();
 
-        return ;
-    }
+//         if (basicPrinter.print(content) == false) {
+//             basicPrinter.refill();
+//             basicPrinter.print(content);
+//         }
 
-    public List<Integer> print(List<Document> docs) {
-        List<Integer> jobs = new ArrayList<>();
-        for (Document doc : docs) {
-            jobs.add(spool.newPrintJob(doc));
-        }
-        return jobs;
-    }
+//         return job.getJobId();
+//     }
 
-    public void showQueuedJobs() {
-        for (PrintJob printJob : spool.getPrintQueue()) {
-            System.out.println(printJob);
-        }
-    }
+//     @Override
+//     public List<Integer> print(List<Document> docs) {
+//         List<Integer> jobs = new ArrayList<>();
+//         for (Document doc : docs) {
+//             PrintJob job = new PrintJob(doc);
+//             String[] content = job.getContent();
+            
+//             addQueue(job);
 
-    public boolean cancelJob(int jobId) {
-        return spool.cancelJob(jobId);
-    }
+//             jobs.add(job.getJobId());
 
-    public void cancelAll() {
-        spool.getPrintQueue().clear();
-    }
+//         }
+//         return jobs;
+//     }
+
+//     public void showQueuedJobs() {
+//         for (PrintJob printJob : printQueue) {
+//             System.out.println(printJob);
+//         }
+//     }
+
+//     public boolean cancelJob(int jobId) {
+//         return printQueue.removeIf(job -> job.getJobId() == jobId);
+//     }
+
+//     public void cancelAll() {
+//         printQueue.clear();
+//     }
     
-}
+// }

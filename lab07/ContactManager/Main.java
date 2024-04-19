@@ -24,15 +24,38 @@ public class Main {
             cm.add(c);
         }
         
+        // TXT
+        System.out.println("\nTXT");
         cm.saveAndClose();
+        cm.openAndLoad(txt);
 
-        cm.saveAndClose(bin);
+        System.out.println(cm.getByName("Pedro"));
+        System.out.println(cm.getByName("Joao"));
+        System.out.println(cm.getByName("Maria"));
+        System.out.println(cm.getByName("Jose"));
+        System.out.println(cm.getByName("Ana"));
 
+        // CVS
+        System.out.println("\nCVS");
         cm.saveAndClose(cvs);
+        cm.openAndLoad(cvs);
 
+        System.out.println(cm.getByName("Pedro"));
+        System.out.println(cm.getByName("Joao"));
+        System.out.println(cm.getByName("Maria"));
+        System.out.println(cm.getByName("Jose"));
+        System.out.println(cm.getByName("Ana"));
+
+        // BIN
+        System.out.println("\nBIN");
+        cm.saveAndClose(bin);
         cm.openAndLoad(bin);
 
         System.out.println(cm.getByName("Pedro"));
-        
+        System.out.println(cm.getByName("Joao"));
+        System.out.println(cm.getByName("Maria"));
+        System.out.println(cm.getByName("Jose"));
+        System.out.println(cm.getByName("Ana"));
+
     }
 }

@@ -18,28 +18,29 @@ public class PrinterTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        AdvancedPrinterInterface p = new AdvancedPrinter();
+        AdvancedPrinterInterface p1 = new AdvancedPrinter();
+        AdvancedPrinterInterface p2 = new BasicPrinterAdapter(new BasicPrinter());
 
         List<Document> docs = new ArrayList<Document>();
         docs.add(new Document("text1.txt"));
         docs.add(new Document("text2.txt"));
         docs.add(new Document("text3.txt"));
 
-        p.print(docs.get(0));   // print first document only
+        p1.print(docs.get(0));   // print first document only
+        pause(2000);            // wait for a while
+
+        p1.print(docs);
+        p1.showQueuedJobs();
         pause(4000);            // wait for a while
 
-        p.print(docs);
-        p.showQueuedJobs();
-        pause(6000);            // wait for a while
-
-        p.print(docs);
-        p.cancelJob(6);
-        p.showQueuedJobs();
-        pause(6000);            // wait for a while
-
-        p.print(docs);
-        p.cancelAll();
-        p.showQueuedJobs();
+        p2.print(docs);
+        p2.cancelJob(6);
+        p2.showQueuedJobs();
         pause(4000);            // wait for a while
+
+        p1.print(docs);
+        p1.cancelAll();
+        p1.showQueuedJobs();
+        pause(2000);            // wait for a while
     }
 }

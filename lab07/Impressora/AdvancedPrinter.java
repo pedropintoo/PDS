@@ -109,13 +109,14 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
 
     public void showQueuedJobs() {
         if (spool.getPrintQueue().isEmpty()) {
-            System.out.println("No jobs spooled.");
+            System.out.println("No spooled jobs.");
             return;
         }
         System.out.println("Spooled jobs:");
         for (PrintJob printJob : spool.getPrintQueue()) {
             System.out.println("\t * " + printJob);
         }
+        System.out.println();
     }
 
     public boolean cancelJob(int jobId) {
@@ -128,6 +129,7 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
     }
 
     public void cancelAll() {
+        spool.shutdownAndAwaitTermination();
         spool.getPrintQueue().clear();
     }
 }

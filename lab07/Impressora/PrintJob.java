@@ -1,3 +1,8 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt) & Guilherme Santos (gui.santos91@ua.pt)
+ * @ Create Time: 2024-04-19
+ */
+
 package Impressora;
 
 import java.util.concurrent.Callable;
@@ -48,7 +53,7 @@ public class PrintJob implements Callable<String[]> {
     public String[] call() throws Exception {
         String[] res = this.getContent();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

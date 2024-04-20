@@ -1,3 +1,8 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt) & Guilherme Santos (gui.santos91@ua.pt)
+ * @ Create Time: 2024-04-19
+ */
+
 package Impressora;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +42,21 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
         }
 
         public int newPrintJob(Document doc) {
-           // TODO: adiciona 'print job' à fila de impressão
+            // TODO: adiciona 'print job' à fila de impressão
+            PrintJob job = new PrintJob(doc);
+            printQueue.add(job);
+            return job.getJobId();    
         }
 
         public boolean cancelJob(int job) {
            // TODO: cancela 'print job', se existir na fila
+            for (PrintJob printJob : printQueue) {
+                if (printJob.getJobId() == job) {
+                    printQueue.remove(printJob);
+                    return true;
+                }
+            }
+            return false;
         }
     
         void shutdownAndAwaitTermination() {
@@ -77,6 +92,44 @@ public class AdvancedPrinter implements AdvancedPrinterInterface {
     }
 
     // TODO: implementar métodos
+    // Métodos provisórios
+    public int print(Document doc) {
+        System.out.println("Spooling 1 document.");
+        return spool.newPrintJob(doc);
+    }
 
+    public List<Integer> print(List<Document> docs) {
+        System.out.printf("Spooling %d document.\n", docs.size());
+        List<Integer> jobs = new ArrayList<>();
+        for (Document doc : docs) {
+            jobs.add(spool.newPrintJob(doc));
+        }
+        return jobs;
+    }
 
+    public void showQueuedJobs() {
+        if (spool.getPrintQueue().isEmpty()) {
+            System.out.println("No spooled jobs.");
+            return;
+        }
+        System.out.println("Spooled jobs:");
+        for (PrintJob printJob : spool.getPrintQueue()) {
+            System.out.println("\t * " + printJob);
+        }
+        System.out.println();
+    }
+
+    public boolean cancelJob(int jobId) {
+        PrintJob job = spool.getPrintQueue().stream().filter(j -> j.getJobId() == jobId).findFirst().orElse(null);
+        boolean returnVal = spool.cancelJob(jobId);
+        if (returnVal) {
+            System.out.println("Cancelled " + job);
+        } 
+        return returnVal;
+    }
+
+    public void cancelAll() {
+        spool.shutdownAndAwaitTermination();
+        spool.getPrintQueue().clear();
+    }
 }

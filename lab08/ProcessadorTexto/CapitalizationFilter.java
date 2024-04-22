@@ -22,6 +22,6 @@ public class CapitalizationFilter extends TextFilterDecorator {
         String firstLetter = String.valueOf(text.charAt(0)).toUpperCase();
         String lastLetter = String.valueOf(text.charAt(text.length()-1)).toUpperCase();
 
-        return firstLetter + text.substring(1, text.length()) + lastLetter;
+        return firstLetter + text.substring(1, text.length()).toLowerCase() + lastLetter;
     }
 }

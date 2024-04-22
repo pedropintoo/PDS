@@ -18,8 +18,26 @@ public class Main {
             System.out.println("next: " + reader.next());
         }
 
+        System.out.println("\n\n---- TermFilter ----");
+        reader = new TermFilter(new TextReader("text.txt"));
+        while (reader.hasNext()) {
+            System.out.println("next: " + reader.next());
+        }
+
         System.out.println("\n\n---- NormalizationFilter ----");
         reader = new NormalizationFilter(new TextReader("text.txt"));
+        while (reader.hasNext()) {
+            System.out.println("next: " + reader.next());
+        }
+
+        System.out.println("\n\n---- VowelFilter ----");
+        reader = new VowelFilter(new TextReader("text.txt"));
+        while (reader.hasNext()) {
+            System.out.println("next: " + reader.next());
+        }
+
+        System.out.println("\n\n---- CapitalizationFilter ----");
+        reader = new CapitalizationFilter(new TextReader("text.txt"));
         while (reader.hasNext()) {
             System.out.println("next: " + reader.next());
         }

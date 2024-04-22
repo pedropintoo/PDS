@@ -21,7 +21,6 @@ public class VowelFilter extends TextFilterDecorator{
                 res.append(c);
             }
         }
-        
         return res.toString();
     }
     

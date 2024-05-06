@@ -2,11 +2,19 @@ package ex3.startypes;
 import java.awt.Color;
 
 public class FStar extends StarType{
+    public static StarType instance;
     
-    public FStar(int x, int y) {
-        super(2, new Color(255, 255, 245), x, y);
+    public FStar() {
+        super(2, new Color(255, 255, 245));
         this.description = "This is a long description of the F type star....";
         // This would store the values of physical properties for each type of star
         this.physicalProperties = new Float[10];
+    }
+
+    public static StarType getInstance(){
+        if(instance == null){
+            instance = new FStar();
+        }
+        return instance;
     }
 }

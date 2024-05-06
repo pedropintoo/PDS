@@ -1,4 +1,4 @@
-package ex1_b;
+package ex2;
 class Person {
 	
 	private String name;
@@ -25,4 +25,8 @@ class Person {
 		return bankAccount.balance();
 	}
 
+	@Override
+	public String toString() {
+		return "Person[" + name + "]";
+	}
 }

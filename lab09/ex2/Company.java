@@ -1,4 +1,4 @@
-package ex1_b;
+package ex2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,14 +13,14 @@ private List<Employee> emps = new ArrayList<>();
 		Employee e = new Employee(person, salary);
 		emps.add(e);
 	}
-	
+
 	public void paySalaries(int month) {
 		for (Employee e : emps) {
 			Person p = e.getPerson();
 			p.deposit(e.getSalary());
 		}
 	}
-	
+
 	public List<Employee> employees() {
 		return Collections.unmodifiableList(emps);
 	}

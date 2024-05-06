@@ -1,4 +1,4 @@
-package ex1;
+package ex1_b;
 class BankAccountImpl implements BankAccount {
 	
 private String bank;

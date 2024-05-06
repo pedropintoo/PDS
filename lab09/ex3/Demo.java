@@ -1,3 +1,4 @@
+package ex3;
 import java.awt.Color;
 
 import startypes.*;

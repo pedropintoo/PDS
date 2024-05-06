@@ -1,3 +1,4 @@
+package ex3;
 import javax.swing.*;
 
 import startypes.StarType;

@@ -1,4 +1,4 @@
-package startypes;
+package ex3.startypes;
 import java.awt.Color;
 
 public class KStar extends StarType{

@@ -1,4 +1,4 @@
-package ex1;
+package ex1_b;
 
 import java.util.ArrayList;
 import java.util.Collections;

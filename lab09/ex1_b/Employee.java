@@ -1,4 +1,4 @@
-package ex1;
+package ex1_b;
 class Employee extends Person {
 
 private double salary;

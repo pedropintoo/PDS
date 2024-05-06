@@ -1,4 +1,4 @@
-package ex1;
+package ex1_b;
 interface BankAccount {
 	void deposit(double amount);
 	boolean withdraw(double amount);

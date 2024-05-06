@@ -1,7 +1,7 @@
 package ex3;
 import java.awt.Color;
 
-import startypes.*;
+import ex3.startypes.*;
 
 public class Demo {
     static int CANVAS_SIZE = 1200;
@@ -30,19 +30,20 @@ public class Demo {
 
     }
 
-    private static StarType createStar(char type) {
+    private static Star createStar(char typeChar) {
         int x = random(0, CANVAS_SIZE);
         int y = random(0, CANVAS_SIZE);
-        StarType star=null;
-        switch (type) {
-        case 'O' : star = new OStar(x, y); break;
-        case 'A' : star = new AStar(x, y); break;
-        case 'B' : star = new BStar(x, y); break;
-        case 'F' : star = new FStar(x, y); break;
-        case 'G' : star = new GStar(x, y); break;
-        case 'K' : star = new KStar(x, y); break;
-        case 'M' : star = new MStar(x, y); break;
+        StarType type=null;
+        switch (typeChar) {
+            case 'O' : type = OStar.getInstance(); break;
+            case 'A' : type = AStar.getInstance(); break;
+            case 'B' : type = BStar.getInstance(); break;
+            case 'F' : type = FStar.getInstance(); break;
+            case 'G' : type = GStar.getInstance(); break;
+            case 'K' : type = KStar.getInstance(); break;
+            case 'M' : type = MStar.getInstance(); break;
         }
+        Star star = new Star(x, y, type);
         return star;
     }
 

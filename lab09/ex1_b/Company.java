@@ -9,14 +9,15 @@ class Company {
 public static User user;
 private List<Employee> emps = new ArrayList<>();
 
-	public void admitPerson(String name, double salary) {
-		Employee e = new Employee(name, salary);
+	public void admitEmployee(Person person, double salary) {
+		Employee e = new Employee(person, salary);
 		emps.add(e);
 	}
 	
 	public void paySalaries(int month) {
 		for (Employee e : emps) {
-			BankAccount ba = e.getBankAccount();
+			Person p = e.getPerson();
+			BankAccount ba = p.getBankAccount();
 			ba.deposit(e.getSalary());
 		}
 	}

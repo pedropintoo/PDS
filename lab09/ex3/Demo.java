@@ -1,7 +1,7 @@
 package ex3;
 import java.awt.Color;
 
-import startypes.*;
+import ex3.startypes.*;
 
 public class Demo {
     static int CANVAS_SIZE = 1200;

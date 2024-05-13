@@ -1,4 +1,8 @@
-public class VectorGeneric<T> {
+package iterator;
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class VectorGeneric<T> implements Iterable<T>, ListIterator {
 	private T[] vec;		
 	private int nElem;	      
 	private final static int ALLOC = 50;   
@@ -47,4 +51,55 @@ public class VectorGeneric<T> {
 	public T getElem(int i) {
 		return (T) vec[i];
 	}
+
+	@Override
+	public java.util.Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+	}
+
+	@Override
+	public void add(Object arg0) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'add'");
+	}
+
+	@Override
+	public boolean hasPrevious() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'hasPrevious'");
+	}
+
+	@Override
+	public int nextIndex() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'nextIndex'");
+	}
+
+	@Override
+	public Object previous() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'previous'");
+	}
+
+	@Override
+	public int previousIndex() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'previousIndex'");
+	}
+
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'remove'");
+	}
+
+	@Override
+	public void set(Object arg0) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'set'");
+	}
+
+
+
 }

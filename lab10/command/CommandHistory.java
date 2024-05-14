@@ -5,13 +5,14 @@ public class CommandHistory{
     public Stack<Command> history;
 
     public CommandHistory() {
+        history = new Stack<>();
     }
 
     public void push(Command command){
         history.push(command);
     }
 
-    public void pop(){
-        history.pop();
+    public Command pop(){
+        return history.pop();
     }
 }

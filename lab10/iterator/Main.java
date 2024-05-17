@@ -1,14 +1,20 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt) & Guilherme Santos (gui.santos91@ua.pt)
+ * @ Create Time: 2024-05-13
+ */
+
 package iterator;
 import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
         VectorGeneric<String> vector = new VectorGeneric<String>();
+        vector.addElem("zero");
         vector.addElem("one");
         vector.addElem("two");
         vector.addElem("three");
         vector.addElem("four");
-        vector.addElem("five");
+        
 
         Iterator<String> it = vector.Iterator();
         int i = 0;
@@ -28,6 +34,7 @@ public class Main {
             System.out.println(it.next());
         }
 
+        System.out.println();
         Iterator<String> it3 = vector.listIterator(3);
         while(it3.hasNext()) {
             System.out.println(it3.next());

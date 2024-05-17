@@ -1,3 +1,8 @@
+/**
+ * @ Author: Pedro Pinto (pmap@ua.pt) & Guilherme Santos (gui.santos91@ua.pt)
+ * @ Create Time: 2024-05-13
+ */
+
 package iterator;
 import java.util.Iterator;
 

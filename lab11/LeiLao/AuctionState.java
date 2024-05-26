@@ -9,14 +9,15 @@ public class AuctionState implements State{
     }
 
     @Override
-    public void pushAuction() {
+    public boolean pushAuction() {
         System.out.println("ERROR: Product is already in auction");
+        return false;
     }
 
     @Override
-    public void Sell() {
+    public boolean Sell() {
         product.changeState(new SoldState(product));
+        return true;
     }
-    
     
 }

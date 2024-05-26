@@ -1,6 +1,6 @@
 package LeiLao;
 
 public interface State{
-    public void pushAuction();
-    public void Sell();
+    public boolean pushAuction();
+    public boolean Sell();
 }

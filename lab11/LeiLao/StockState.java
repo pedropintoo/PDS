@@ -9,13 +9,15 @@ public class StockState implements State {
     }
 
     @Override
-    public void pushAuction() {
+    public boolean pushAuction() {
         product.changeState(new AuctionState(product));
+        return true;
     }
 
     @Override
-    public void Sell() {
+    public boolean Sell() {
         System.out.println("ERROR: Product is not in auction");
+        return false;
     }
 
 }

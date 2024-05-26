@@ -1,16 +1,19 @@
 package LeiLao;
 
 public class SoldState implements State{
+    private Product product;
     
     public SoldState(Product product) {
+        this.product = product;
     }
 
-    public void pushAuction() {
+    public boolean pushAuction() {
         System.out.println("ERROR: Product is already in auction");
+        return false;
     }
 
-    public void Sell() {
+    public boolean Sell() {
         System.out.println("ERROR: Product is already sold");
+        return false;
     }
-    
 }

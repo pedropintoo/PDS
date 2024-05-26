@@ -8,7 +8,7 @@ public class SoldState implements State{
     }
 
     public boolean pushAuction() {
-        System.out.println("ERROR: Product is already in auction");
+        System.out.println("ERROR: Product is already sold");
         return false;
     }
 

@@ -47,6 +47,7 @@ public class Product {
             Sell();
         }
         else {
+            System.out.println("Product " + this.Id + " has no bids, it will be sent to stock");
             changeState(new StockState(this));
         }
     }

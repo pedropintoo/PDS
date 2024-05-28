@@ -14,7 +14,7 @@ public class InventoryState implements State {
 
     @Override
     public void requireBook() {
-        System.err.println("Book is already required");
+        System.err.println("Book can't be required from inventory");
     }
 
     @Override

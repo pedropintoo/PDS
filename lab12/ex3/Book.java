@@ -1,7 +1,7 @@
 package ex3;
 
 public class Book {
-    private static int idCounter = 0;
+    private static int idCounter = 1;
     private String title;
     private int ISBN;
     private int year;
@@ -20,8 +20,32 @@ public class Book {
         this.state = state;
     }
 
+    public int getISBN() {
+        return ISBN;
+    }
+
+    public void registerBook() {
+        state.registerBook();
+    }
+
+    public void requireBook() {
+        state.requireBook();
+    }
+
+    public void returnBook() {
+        state.returnBook();
+    }
+
+    public void reserveBook() {
+        state.reserveBook();
+    }
+
+    public void cancelBook() {
+        state.cancelBook();
+    }
+
     @Override
     public String toString() {
-        return String.format("%-4d %-10s %-10s [%-10s]", ISBN, title, author, state.toString());
+        return String.format("%-4d %-25s %-20s %-10s", ISBN, title, author, state.getClass().getSimpleName());
     }
 }

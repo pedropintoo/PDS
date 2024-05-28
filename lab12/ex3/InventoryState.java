@@ -9,7 +9,7 @@ public class InventoryState implements State {
 
     @Override
     public void registerBook() {
-        book.setState(new InventoryState(book));
+        book.setState(new AvailableState(book));
     }
 
     @Override

@@ -57,6 +57,8 @@ public class Main {
                     }
                 }
             }
+        } catch (Exception e) {
+            System.err.println("Error (maybe not in [book,operation]!): " + e.getMessage());    
         } finally {
             System.out.println("Closing");
             scanner.close();

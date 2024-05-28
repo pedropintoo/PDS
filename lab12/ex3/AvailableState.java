@@ -20,20 +20,17 @@ public class AvailableState implements State{
 
     @Override
     public void returnBook() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'returnBook'");
+        System.err.println("Cannot return a book that is not borrowed");
     }
 
     @Override
     public void reserveBook() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'reserveBook'");
+        this.book.setState(new ReservedState(book));
     }
 
     @Override
     public void cancelBook() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cancelBook'");
+        System.err.println("Cannot cancel a book that is not reserved");
     }
     
 }

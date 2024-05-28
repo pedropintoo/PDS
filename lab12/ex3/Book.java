@@ -4,14 +4,14 @@ public class Book {
     private static int idCounter = 0;
     private String title;
     private int ISBN;
-    private int ano;
+    private int year;
     private String author;
     private State state;
 
-    public Book(String title, int ano, String author) {
+    public Book(String title, int year, String author) {
         this.title = title;
         this.ISBN = idCounter++;
-        this.ano = ano;
+        this.year = year;
         this.author = author;
         this.state = new InventoryState(this);
     }

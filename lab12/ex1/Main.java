@@ -1,5 +1,7 @@
 package ex1;
 
+import java.util.Comparator;
+
 class Main {
 
     public static void main(String[] args) {
@@ -17,7 +19,7 @@ class Main {
         st.addObject(p4);
         st.addObject(p5);
 
-        Algorithm<Phone> alg1 = new BubbleSort<>(SortingFilter.PRICE);
+        Algorithm<Phone> alg1 = new BubbleSort<Phone>(st.getPhones(), Comparator.comparingInt(Phone::getMemory));
 
         alg1.sort(st.getPhones());
 

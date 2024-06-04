@@ -48,13 +48,31 @@ public class XIII2 {
 	// alínea b)
 	private static void question2(PrintStream out) {
 		out.println("\nAlínea b) ----------------------------------\n");
-		// Completar
+		
+		av.remove("C02");
+
+		ShipOfSmallShips container = new ShipOfSmallShips("random", "not a name");
+		
+		// NOT COMPLETED!
+		av.add("C02", new CargoShip("S101", "Quebra Molas", 155.5));
+		av.add("C11", new CargoShip("S732", "SoPingas", 20.2));
+		av.add("C03", new CargoShip("S923", "Madalena", 18.8));
+		av.add("P54", new PassengerShip("S199", "Bananeiros", 120));
+		av.add("P35", new PassengerShip("S185", "PDS All aboard", 80));
+		av.add("P06", new PassengerShip("S078", "Costeiro", 25));
+
+		Iterator<String> it = av.iterator();
+		while (it.hasNext()) {
+			out.println(it.next());
+		}
 
 	}
 
 	// alínea c)
 	private static void question3(PrintStream out) {
 		// Completar
+
+		// PROXY...
 
 	}
 

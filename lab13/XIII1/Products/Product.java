@@ -1,3 +1,4 @@
+package Products;
 
 public interface Product {
 	String code();

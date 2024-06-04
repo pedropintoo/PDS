@@ -5,6 +5,16 @@ import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Products.Car;
+import Products.HardcodedReader;
+import Products.Jeep;
+import Products.Motorcycle;
+import Products.OldJeep;
+import Products.Product;
+import Products.ProductsReader;
+import Products.TextFileReader;
+import Products.Van;
+
 // Notas:
 // Não altere o código apresentado na alinea 1
 // Deve completar o código das alineas 2 e 3
@@ -24,7 +34,7 @@ public class XIII1{
 	private static void test(PrintStream out) {
 		question1(out);
 		question2(out);
-		// question3(out);
+		question3(out);
 	}
 
 	private static void question1(PrintStream out) {
@@ -65,12 +75,44 @@ public class XIII1{
 
 	private static void question2(PrintStream out) {
 		out.println("\nQuestion 2 (output example) ----------------------------------\n");
-		// Completar
+		ToShare market = new ToShare();
+
+		market.setProductsReader(new TextFileReader("products.txt"));
+		market.importFromProductsReader();		
+
+		out.println("--- All Products :");
+		for (Product p : market) 
+			out.println(p);
+
+		market.setProductsReader(new HardcodedReader());
+		market.importFromProductsReader();	
+
+		out.println("--- All Products :");
+		for (Product p : market) 
+			out.println(p);
+
 	}
 
 	private static void question3(PrintStream out) {
 		out.println("\nQuestion 3) ----------------------------------\n");
 		// Completar
+
+		ToShare shareIt = new ToShare();
+
+		Client u1 = new Client("1", "Pedro");
+		Client u2 = new Client("2","João");
+		Client u3 = new Client("3","Jorguinho");
+
+		out.println(shareIt.share("UA0001", u1)); // true
+		out.println(shareIt.share("UA0001", u2)); // false (já está emprestada)
+		out.println(shareIt.share("UA0001", u3));
+
+		out.println(shareIt.giveBack("UA0001")); // true (devolvida por u1, emprestado a u2)
+		out.println(shareIt.giveBack("UA0001")); // true (devolvida por u2)
+		out.println(shareIt.giveBack("UA0001")); // true (devolvida por u3)
+
+		out.println(shareIt.giveBack("UA0001")); // false
+		out.println("--- Repeated output... ---");
 	}
 
 

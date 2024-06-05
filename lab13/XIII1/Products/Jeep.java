@@ -1,8 +1,5 @@
 package Products;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Jeep implements Product {
     private String code;
     private String descr;

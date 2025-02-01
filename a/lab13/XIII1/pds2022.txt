@@ -1,0 +1,63 @@
+/home/pedro/Documents/Universidade/2ano/2semestre/PDS/Praticas/lab13/XIII1
+2024/06/04 15:45:53
+
+Question 1) ----------------------------------
+
+--- All Products :
+Van [code=AA22BB, descr=Chevrolet Chevy, 2020, points=180.0]
+Car [code=BB44ZB, descr=Ford Mustang, Red, 2021, points=150.0]
+Car [code=ZA11ZB, descr=Tesla, Grey, 2021, points=100.0]
+Motorcycle [code=ZA33ZB, descr=Touring, 750, 2022, points=85.0]
+--- Shared Products :
+Total : 3
+	Car ZA11ZB shared with Client [number=187, name=Peter Pereira]
+	Car BB44ZB shared with Client [number=826, name=Mary Monteiro]
+	Motorcycle ZA33ZB shared with Client [number=957, name=Anne Marques]
+--- Shared Products :
+Total : 1
+	Motorcycle ZA33ZB shared with Client [number=957, name=Anne Marques]
+--- All Products :
+Van [code=AA22BB, descr=Chevrolet Chevy, 2020, points=180.0]
+Car [code=BB44ZB, descr=Ford Mustang, Red, 2021, points=150.0]
+Car [code=ZA11ZB, descr=Tesla, Grey, 2021, points=100.0]
+Jeep [code=JJ0011, descr=Some old SUV, points=88.5]
+Motorcycle [code=ZA33ZB, descr=Touring, 750, 2022, points=85.0]
+
+Question 2 (output example) ----------------------------------
+
+--- All Products :
+Jeep [code=123, descr=Jeep Model, points=21185.0]
+Motorcycle [code=900010, descr=Harley-Davidson Pan America 1250, points=205.0]
+Motorcycle [code=900009, descr=BMW R1150R Boxer Naked Roadster Cinza ABS, points=195.0]
+Motorcycle [code=990011, descr=Ducati DesertX, points=185.0]
+Van [code=970005, descr=Jeep Grand Cherokee, points=150.0]
+Van [code=970006, descr=Alfa Romeo AR6, points=130.0]
+Van [code=980001, descr=GMC Safari, points=130.0]
+Car [code=990000, descr=Ford Maverick, points=120.0]
+Van [code=980002, descr=Lancia Voyager, points=120.0]
+Car [code=990002, descr=MAZDA MX-5 Miata, points=100.0]
+Car [code=990001, descr=Toyota Avalon, points=100.0]
+--- All Products :
+Jeep [code=123, descr=Jeep Model, points=21185.0]
+Motorcycle [code=900010, descr=Harley-Davidson Pan America 1250, points=205.0]
+Motorcycle [code=900009, descr=BMW R1150R Boxer Naked Roadster Cinza ABS, points=195.0]
+Motorcycle [code=990011, descr=Ducati DesertX, points=185.0]
+Van [code=970005, descr=Jeep Grand Cherokee, points=150.0]
+Van [code=970006, descr=Alfa Romeo AR6, points=130.0]
+Van [code=980001, descr=GMC Safari, points=130.0]
+Car [code=990000, descr=Ford Maverick, points=120.0]
+Van [code=980002, descr=Lancia Voyager, points=120.0]
+Car [code=990002, descr=MAZDA MX-5 Miata, points=100.0]
+Car [code=990001, descr=Toyota Avalon, points=100.0]
+Car [code=321, descr=hardcoded, points=24.0]
+
+Question 3) ----------------------------------
+
+true
+false
+false
+true
+true
+true
+false
+--- Repeated output... ---

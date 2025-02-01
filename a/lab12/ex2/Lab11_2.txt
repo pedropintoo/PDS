@@ -1,0 +1,6 @@
+1. java.io.InputStream
+    A classe InputStream é uma classe abstrata que define o método read() como um método abstrato. Este método é usado como um passo fundamental no algoritmo de leitura de dados, e as subclasses são obrigadas a fornecer uma implementação concreta para ele.
+2. java.util.AbstractList
+    AbstractList é uma implementação abstrata da interface List. Ela implementa a maior parte dos métodos da interface List, mas deixa a implementação dos métodos get(int index), set(int index, E element), add(int index, E element) e remove(int index) para as subclasses. Esses métodos são essenciais para manipular elementos na lista, e cada subclasse pode ter uma implementação diferente dependendo de sua estrutura interna.
+3. java.util.AbstractMap
+    Similarmente, AbstractMap fornece uma implementação esquelética da interface Map, implementando a maior parte dos métodos baseados em um conjunto de entradas. No entanto, deixa a implementação dos métodos entrySet(), put(K key, V value) e outros métodos essenciais para manipulação de pares chave-valor para as subclasses.

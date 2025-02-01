@@ -1,3 +1,0 @@
-Algorithm;Binary;Database;Encryption
-Framework;Interface;JavaScript;Networking
-Operating System

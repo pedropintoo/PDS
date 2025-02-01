@@ -1,4 +1,0 @@
-Macas;Bananas;Uvas;Pessegos
-Laranjas;Morangos;Abacaxis;Melancias
-Cenouras;Tomates;Brocolis;Alface
-Cachorro;Gato;Peixe;Passaro

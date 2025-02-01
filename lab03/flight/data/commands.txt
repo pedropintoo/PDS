@@ -1,7 +1,0 @@
-I ./data/flight1.txt
-M TP1920
-C TP1920:1
-R TP1920 T 5
-C TP1920:2
-R TP1920 T 5
-M TP1920

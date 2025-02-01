@@ -1,5 +1,0 @@
-javac */*.java
-java lab01.Main
-rm */*.class
-
-git rebase -X ours main
